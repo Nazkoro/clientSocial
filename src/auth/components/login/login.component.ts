@@ -16,7 +16,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators, FormGroup} from '@angular/forms';
-import {Subscription} from 'rxjs';
+import {Subject, Subscription, BehaviorSubject } from 'rxjs';
 import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
 
@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
   form: FormGroup | undefined;
   aSub: Subscription | undefined;
   errorRes: object | null = null;
-
+  // subject$ = new Subject();
+  // subject$ = new BehaviorSubject( {});
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -51,8 +52,9 @@ export class LoginComponent implements OnInit {
     console.log(this.form.getRawValue())
     this.aSub = this.authService.login(this.form.getRawValue()).subscribe(
       res => {
-        console.log(res);
-        this.router.navigate(['/']);
+        // this.subject$.next(res);
+        // console.log(res);
+        this.router.navigate(['user']);
       },
       error => this.errorRes = error
     );

@@ -18,6 +18,7 @@ export class BaseService<T> {
     return this.http.get<[T]>(`${environment.url}/${this.url}/`, {params: params});
   }
 
+/*
   get_list(id: number, params?: HttpParams): Observable<[T]> {
     return this.http.get<[T]>(`${environment.url}/${this.url}/${id}`, {params: params});
   }
@@ -25,6 +26,7 @@ export class BaseService<T> {
   get_single(id: number): Observable<T> {
     return this.http.get<T>(`${environment.url}/${this.url}/${id}/`);
   }
+*/
 
   post(model: T): Observable<T> {
     return this.http.post<T>(`${environment.url}/${this.url}/`, model);

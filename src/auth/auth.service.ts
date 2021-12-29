@@ -17,19 +17,24 @@ export class AuthService {
 
   login(model: Login): Observable<any> {
     return this.http.post<any>(`${environment.url}/api/auth/login`, model)
-      // .pipe(
-      //   tap(
-      //     (token: Token) => {
-      //       this.setToken(token.access);
-      //       localStorage.setItem('token', token.access);
-      //     }
-      //   )
-      // );
+      .pipe(
+        tap(
+          (user) =>{
+            localStorage.setItem('user', JSON.stringify(user));
+          }
+          // (token: Token) => {
+          //   this.setToken(token.access);
+          //   localStorage.setItem('token', token.access);
+          // }
+        )
+      );
   }
 
   registration(model: Registration): Observable<any> {
     return this.http.post<any>(`${environment.url}/api/auth/register`, model);
   }
+
+
 
 
 

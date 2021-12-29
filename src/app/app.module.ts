@@ -29,11 +29,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TokenInterceptService} from '../auth/token-intercept.service';
+import { PostsComponent } from './components/posts/posts/posts.component';
+import { UserComponent } from './components/user/user/user.component';
+import { AboutGuard }   from './about.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    PostsComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,7 @@ import {TokenInterceptService} from '../auth/token-intercept.service';
     // ProfileModule,
     BrowserAnimationsModule
   ],
-  providers: [
+  providers: [AboutGuard,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptService, multi: true}
   ],
   bootstrap: [AppComponent]
