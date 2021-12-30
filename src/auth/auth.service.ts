@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {Login, Registration, Token, Verify} from './models';
 import {tap} from 'rxjs/operators';
 
@@ -12,6 +12,8 @@ import {tap} from 'rxjs/operators';
 export class AuthService {
   private token: string | null = null;
 
+   subject$ = new BehaviorSubject( null);
+
   constructor(private http: HttpClient) {
   }
 
@@ -20,7 +22,8 @@ export class AuthService {
       .pipe(
         tap(
           (user) =>{
-            localStorage.setItem('user', JSON.stringify(user));
+            this.subject$.next(user)
+            // localStorage.setItem('user', JSON.stringify(user));
           }
           // (token: Token) => {
           //   this.setToken(token.access);
@@ -33,12 +36,6 @@ export class AuthService {
   registration(model: Registration): Observable<any> {
     return this.http.post<any>(`${environment.url}/api/auth/register`, model);
   }
-
-
-
-
-
-
 
 
 

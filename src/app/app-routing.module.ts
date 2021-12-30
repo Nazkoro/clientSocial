@@ -23,7 +23,7 @@ const routes: Routes = [
     path: '', component: AppComponent,
   },
   {
-    path: 'user', component: UserComponent,canActivate: [AboutGuard]
+    path: 'user', component: UserComponent,
   },
   {
     path: '**', component: NotfoundComponent,

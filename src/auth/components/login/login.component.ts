@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     // this.formData = new FormData();
     // this.formData.append('email', this.form?.value.email);
     // this.formData.append('password', this.form?.value.password);
-    console.log(this.form.getRawValue())
+    // console.log(this.form.getRawValue())
     this.aSub = this.authService.login(this.form.getRawValue()).subscribe(
       res => {
         // this.subject$.next(res);

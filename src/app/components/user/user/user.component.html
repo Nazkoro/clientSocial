@@ -1,8 +1,9 @@
-<h1>Hello</h1>
-<h2>Hi {{user.username}}</h2>
-<p>{{user.createdAt | date}}</p>
-<p>{{user.email}}</p>
-
-
-
+<ng-container *ngIf="user">
+  <h1>Hello</h1>
+  <h2>Hi {{user.username}}</h2>
+  <p>email: {{user.email}}</p>
+  <p>acount created: {{user.createdAt | date}}</p>
+  <button >get posts</button>
+  <a routerLink="/posts">О сайте</a>
+</ng-container>
 

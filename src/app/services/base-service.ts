@@ -10,13 +10,19 @@ import {Injectable} from '@angular/core';
 export class BaseService<T> {
   protected url: string | undefined;
   protected params: HttpParams | undefined;
+  // user: any =  JSON.parse(localStorage.getItem('user'))
+  // userId: any = this.user._id
 
   constructor(protected http: HttpClient) {
   }
 
-  get(params?: HttpParams): Observable<[T]> {
-    return this.http.get<[T]>(`${environment.url}/${this.url}/`, {params: params});
-  }
+
+  // get(): Observable<[T]> {
+  //   return this.http.get<[T]>(`${environment.url}/timeline/${this.userId}`);
+  // }
+/*  get(params?: HttpParams): Observable<[T]> {
+    return this.http.get<[T]>(`${environment.url}/timeline/`, {params: params});
+  }*/
 
 /*
   get_list(id: number, params?: HttpParams): Observable<[T]> {

@@ -1,1 +1,8 @@
-<p>posts works!</p>
+<p>Users posts!</p>
+<ul *ngFor="let post of posts">
+  <ol>
+    <li>Description: {{post.desc}}</li>
+    <li>id: {{post._id}}</li>
+    <li>createdAt: {{post.createdAt}}</li>
+  </ol>
+</ul>
