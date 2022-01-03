@@ -18,6 +18,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../auth.service';
 import {Subscription} from 'rxjs';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -29,7 +30,7 @@ export class RegistrationComponent implements OnInit {
   aSub: Subscription | undefined;
   errorRes: object | null = null;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,  private router: Router) {
   }
 
   ngOnInit(): void {
@@ -46,9 +47,12 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
+
   submit(): void {
     this.aSub = this.authService.registration(this.form?.getRawValue()).subscribe(
-      res => alert('Send email'),
+      res =>
+        this.router.navigate(['user']),
+        // alert('Send email'),
       error => console.log(error.error)
     );
   }

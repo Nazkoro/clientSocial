@@ -17,9 +17,12 @@ export class BaseService<T> {
   }
 
 
-  // get(): Observable<[T]> {
-  //   return this.http.get<[T]>(`${environment.url}/timeline/${this.userId}`);
-  // }
+  getUsers(): Observable<[any]> {
+    return this.http.get<[any]>(`${environment.url}/api/users`);
+  }
+  getPosts(): Observable<[any]> {
+    return this.http.get<[any]>(`${environment.url}/api/posts`);
+  }
 /*  get(params?: HttpParams): Observable<[T]> {
     return this.http.get<[T]>(`${environment.url}/timeline/`, {params: params});
   }*/
@@ -34,8 +37,9 @@ export class BaseService<T> {
   }
 */
 
-  post(model: T): Observable<T> {
-    return this.http.post<T>(`${environment.url}/${this.url}/`, model);
+  post(model: any): Observable<any> {
+    console.log(model)
+    return this.http.post<T>(`${environment.url}/api/createpost`, model);
   }
 
   put(model: T, id?: number): Observable<T> {

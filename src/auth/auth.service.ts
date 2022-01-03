@@ -18,12 +18,13 @@ export class AuthService {
   }
 
   login(model: Login): Observable<any> {
-    return this.http.post<any>(`${environment.url}/api/auth/login`, model)
+    return this.http.post<any>(`${environment.url}/api/login`, model)
       .pipe(
         tap(
           (user) =>{
             this.subject$.next(user)
-            // localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('token', user.accessToken);
+            localStorage.setItem('id', JSON.stringify(user.user.id));
           }
           // (token: Token) => {
           //   this.setToken(token.access);
@@ -34,7 +35,15 @@ export class AuthService {
   }
 
   registration(model: Registration): Observable<any> {
-    return this.http.post<any>(`${environment.url}/api/auth/register`, model);
+    return this.http.post<any>(`${environment.url}/api/registration`, model)
+      .pipe(
+        tap(
+          (user) =>{
+            this.subject$.next(user)
+            localStorage.setItem('token', user.accessToken);
+          }
+        )
+    );
   }
 
 
