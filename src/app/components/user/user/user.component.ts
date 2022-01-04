@@ -17,7 +17,9 @@ export class UserComponent implements OnInit {
    user: any
    users: any
    posts: any
-  post:any
+  post:any = {
+     desc: ""
+  }
 
 
   constructor(private baseService: BaseService<any>, private router: Router, private authService: AuthService,private http: HttpClient) { }
@@ -52,11 +54,18 @@ export class UserComponent implements OnInit {
     this.post = {...value, userId: JSON.parse(localStorage.getItem('id'))}
     this.baseService.post(this.post)
       .subscribe(
-        (data: any) => {this.posts = [...this.posts,...data];
+
+        (data: any) => {
+          console.log(data)
+          this.posts.push(data)
+          console.log(this.posts)
+          this.post.desc = ""
           // this.done=true;
           },
         error => console.log(error)
       );
+
   }
+
 
 }

@@ -17,6 +17,7 @@ import {AuthRoutingModule} from '../auth/auth-routing.module';
 import {UserComponent} from "./components/user/user/user.component";
 // import {ProfileRoutingModule} from '../profile/profile-routing.module';
 import { AboutGuard }   from './about.guard';
+import {HomepagesComponent} from "./pages/homepages/homepages.component";
 
 const routes: Routes = [
   {
@@ -24,6 +25,9 @@ const routes: Routes = [
   },
   {
     path: 'user', component: UserComponent,
+  },
+  {
+    path: 'homepage', component: HomepagesComponent,
   },
   {
     path: '**', component: NotfoundComponent,

@@ -32,13 +32,21 @@ import {TokenInterceptService} from '../auth/token-intercept.service';
 import { PostsComponent } from './components/posts/posts/posts.component';
 import { UserComponent } from './components/user/user/user.component';
 import { AboutGuard }   from './about.guard';
+import { FooterComponent } from './components/footer/footer/footer.component';
+import { HeaderComponent } from './components/header/header/header.component';
+import { LeftmenuComponent } from './components/leftmenu/leftmenu/leftmenu.component';
+import { HomepagesComponent } from './pages/homepages/homepages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotfoundComponent,
     PostsComponent,
-    UserComponent
+    UserComponent,
+    FooterComponent,
+    HeaderComponent,
+    LeftmenuComponent,
+    HomepagesComponent
   ],
   imports: [
     BrowserModule,

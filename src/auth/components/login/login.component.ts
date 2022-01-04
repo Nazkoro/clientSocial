@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       res => {
         // this.subject$.next(res);
         // console.log(res);
-        this.router.navigate(['user']);
+        this.router.navigate(['homepage']);
       },
       error => this.errorRes = error
     );
