@@ -4,6 +4,7 @@ import {BaseService} from '../../../services/base-service';
 import {Router} from '@angular/router';
 import {AuthService} from "../../../../auth/auth.service";
 import {HttpClient} from "@angular/common/http";
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-posts',
@@ -13,14 +14,12 @@ import {HttpClient} from "@angular/common/http";
 })
 export class PostsComponent implements OnInit {
 
-  posts: any
+/*  posts: any
   post:any = {
     desc: ""
   }
 
-
   constructor(private baseService: BaseService<any>, private router: Router, private authService: AuthService,private http: HttpClient) { }
-
 
   ngOnInit(): void {
     this.baseService.getPosts().subscribe((data:any) => {
@@ -29,6 +28,7 @@ export class PostsComponent implements OnInit {
     });
 
   }
+
   submit(value){
     console.log(value)
     this.post = {...value, userId: JSON.parse(localStorage.getItem('id'))}
@@ -44,6 +44,42 @@ export class PostsComponent implements OnInit {
         error => console.log(error)
       );
 
+  }*/
+
+  myForm = new FormGroup({
+    // post2: new FormControl('' ),
+    file: new FormControl(''),
+    fileSource: new FormControl('')
+  });
+
+  constructor(private http: HttpClient) { }
+  ngOnInit() {
+  }
+
+  get f(){
+    return this.myForm.controls;
+  }
+
+  onFileChange(event) {
+
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.myForm.patchValue({
+        fileSource: file
+      });
+    }
+  }
+
+  submit(){
+    console.log()
+    const formData = new FormData();
+    formData.append('file', this.myForm.get('fileSource').value);
+
+    this.http.post('http://localhost:4000/api/upload', formData)
+      .subscribe(res => {
+        console.log(res);
+        alert('Uploaded Successfully.');
+      })
   }
 
 

@@ -2,50 +2,65 @@
   <!-- Post Create Box
   ================================================= -->
   <div class="create-post">
-    <div class="row">
-      <div class="col-md-7 col-sm-7">
-        <div class="form-group">
-          <img src="http://placehold.it/300x300" alt="" class="profile-photo-md" />
-          <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish" [(ngModel)]="post.desc"></textarea>
+    <div class="row" >
+      <form [formGroup]="myForm" (ngSubmit)="submit()">
+        <div class="col-md-7 col-sm-7">
+          <div class="form-group">
+<!--            <img src="http://placehold.it/300x300" alt="" class="profile-photo-md" />
+            <input
+              formControlName="post2"
+              id="name"
+              type="text"
+              class="form-control">-->
+            <!--          <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish" [(ngModel)]="post.desc"></textarea>-->
+          </div>
         </div>
-      </div>
-      <div class="col-md-5 col-sm-5">
-        <div class="tools">
-          <ul class="publishing-tools list-inline">
-            <li><a href="#"><i class="ion-compose"></i></a></li>
-            <li><a href="#"><i class="ion-images"></i></a></li>
-            <li><a href="#"><i class="ion-ios-videocam"></i></a></li>
-            <li><a href="#"><i class="ion-map"></i></a></li>
-<!--            <input name="myFile" type="file">//реактивные формы-->
-<!--            <li><button><i class="ion-images"></i></button></li>-->
-          </ul>
-          <button class="btn btn-primary pull-right" (click)="submit(post)">Publish</button>
+        <div class="col-md-5 col-sm-5">
+          <div class="tools">
+            <ul class="publishing-tools list-inline">
+              <!--            <li><a href="#"><i class="ion-compose"></i></a></li>-->
+              <!--            <li><a href="#"><i class="ion-images"></i></a></li>-->
+              <!--            <li><a href="#"><i class="ion-ios-videocam"></i></a></li>-->
+              <!--            <li><a href="#"><i class="ion-map"></i></a></li>-->
+              <!--            <input name="myFile" type="file">-->
+              <input
+                formControlName="file"
+                id="file"
+                type="file"
+                class="form-control"
+                (change)="onFileChange($event)">
+              <!--            <li><button><i class="ion-images"></i></button></li>-->
+            </ul>
+            <button class="btn btn-primary pull-right" type="submit" >Publish</button>
+            <!--          <button class="btn btn-primary pull-right" (click)="submit(post)">Publish</button>-->
+          </div>
         </div>
-      </div>
+      </form>
+
     </div>
   </div><!-- Post Create Box End-->
 
 
   <!-- Post Content
   ================================================= -->
-  <ng-container *ngIf="posts">
-    <div class="post-content" *ngFor="let post of posts">
-      <div class="post-container">
-        <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
-        <div class="post-detail">
-          <div class="user-info">
-            <h5><a href="timeline.html" class="profile-link">{{post.userId}}</a> <span class="following">following</span></h5>
-            <p class="text-muted">{{post.createdAt | date}}</p>
-          </div>
-          <div class="line-divider"></div>
-          <div class="post-text">
-            <p><i class="em em-thumbsup"></i> <i class="em em-thumbsup"></i> {{post.desc}}</div>
-          <div class="line-divider"></div>
-        </div>
-      </div>
-    </div>
+<!--  <ng-container *ngIf="posts">-->
+<!--    <div class="post-content" *ngFor="let post of posts">-->
+<!--      <div class="post-container">-->
+<!--        <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />-->
+<!--        <div class="post-detail">-->
+<!--          <div class="user-info">-->
+<!--            <h5><a href="timeline.html" class="profile-link">{{post.userId}}</a> <span class="following">following</span></h5>-->
+<!--            <p class="text-muted">{{post.createdAt | date}}</p>-->
+<!--          </div>-->
+<!--          <div class="line-divider"></div>-->
+<!--          <div class="post-text">-->
+<!--            <p><i class="em em-thumbsup"></i> <i class="em em-thumbsup"></i> {{post.desc}}</div>-->
+<!--          <div class="line-divider"></div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
-  </ng-container>
+<!--  </ng-container>-->
 
   <!-- Post Content
   ================================================= -->

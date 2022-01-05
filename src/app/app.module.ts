@@ -26,7 +26,7 @@ import {AuthModule} from '../auth/auth.module';
 // import { ProfileModule } from '../profile/profile.module';
 import { NotfoundComponent } from '../shared/notfound.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import {FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TokenInterceptService} from '../auth/token-intercept.service';
 import { PostsComponent } from './components/posts/posts/posts.component';
@@ -54,6 +54,7 @@ import { HomepagesComponent } from './pages/homepages/homepages.component';
     HttpClientModule,
     AppRoutingModule,
     AuthModule,
+    ReactiveFormsModule,
     // ProfileModule,
     BrowserAnimationsModule
   ],
