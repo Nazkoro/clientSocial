@@ -45,20 +45,26 @@ export class PostsComponent implements OnInit {
       );
 
   }*/
+   posts: any
+   postObj: any
 
   myForm = new FormGroup({
-    // post2: new FormControl('' ),
+    post: new FormControl('' ),
     file: new FormControl(''),
     fileSource: new FormControl('')
   });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private baseService: BaseService<any>) { }
   ngOnInit() {
+    this.baseService.getPosts().subscribe((data:any) => {
+      this.posts = data
+      console.log('posts',this.posts)
+    });
   }
-
-  get f(){
-    return this.myForm.controls;
-  }
+  //
+  // get f(){
+  //   return this.myForm.controls;
+  // }
 
   onFileChange(event) {
 
@@ -70,18 +76,39 @@ export class PostsComponent implements OnInit {
     }
   }
 
-  submit(){
-    console.log()
-    const formData = new FormData();
-    formData.append('file', this.myForm.get('fileSource').value);
+  submit()
+  {
+     this.postObj = {
+      desc: this.myForm.value.post,
+      userId: JSON.parse(localStorage.getItem('id'))
+    }
+     if(this.myForm.value.file){
+       //this.myForm.value.fileSource.name = Date.now()
+       const formData = new FormData();
+       formData.append('file', this.myForm.get('fileSource').value);
+       formData.append('description',  this.postObj.desc );
+       formData.append('userId', this.postObj.userId)
+       console.log('formData',formData)
+       console.log('this.myForm', this.myForm)
+       this.postObj.img = this.myForm.value.fileSource.name
 
-    this.http.post('http://localhost:4000/api/upload', formData)
-      .subscribe(res => {
-        console.log(res);
-        alert('Uploaded Successfully.');
-      })
+       this.http.post('http://localhost:4000/api/upload', formData)
+         .subscribe(res => {
+           console.log(res);
+         })
+     }
+     this.baseService.post(this.postObj)
+      .subscribe(
+        (data: any) => {
+          console.log(data)
+          this.posts.push(data)
+          console.log(this.posts)
+          this.postObj = {}
+        },
+        error => console.log(error)
+      );
+    this.myForm.reset()
+    // window.location.reload();
+    // this.myForm.value = null
   }
-
-
-
 }

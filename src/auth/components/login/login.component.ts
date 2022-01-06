@@ -14,7 +14,7 @@
 //
 // }
 
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, Validators, FormGroup} from '@angular/forms';
 import {Subject, Subscription, BehaviorSubject } from 'rxjs';
 import {AuthService} from '../../auth.service';
@@ -26,7 +26,7 @@ import {Router} from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit , OnDestroy {
   formData: any;
   form: FormGroup | undefined;
   aSub: Subscription | undefined;
@@ -50,16 +50,23 @@ export class LoginComponent implements OnInit {
     // this.formData.append('email', this.form?.value.email);
     // this.formData.append('password', this.form?.value.password);
     // console.log(this.form.getRawValue())
+    console.log('this.form',this.form)
     this.aSub = this.authService.login(this.form.getRawValue()).subscribe(
       res => {
         // this.subject$.next(res);
         // console.log(res);
+        // this.form = null
+
         this.router.navigate(['homepage']);
+
       },
       error => this.errorRes = error
     );
+    this.form.reset()
   }
-
+  ngOnDestroy() {
+    // this.form = null
+  }
 }
 
 // , [Validators.required, Validators.minLength(3)]
