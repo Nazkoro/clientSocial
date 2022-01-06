@@ -75,6 +75,12 @@ export class PostsComponent implements OnInit {
       });
     }
   }
+  increment(count){
+    console.log(count)
+    console.log('count',count+1)
+    return count
+
+  }
 
   submit()
   {
@@ -86,27 +92,35 @@ export class PostsComponent implements OnInit {
        //this.myForm.value.fileSource.name = Date.now()
        const formData = new FormData();
        formData.append('file', this.myForm.get('fileSource').value);
-       formData.append('description',  this.postObj.desc );
+       formData.append('desc',  this.postObj.desc );
        formData.append('userId', this.postObj.userId)
        console.log('formData',formData)
        console.log('this.myForm', this.myForm)
        this.postObj.img = this.myForm.value.fileSource.name
 
        this.http.post('http://localhost:4000/api/upload', formData)
-         .subscribe(res => {
-           console.log(res);
-         })
+         .subscribe((data: any) => {
+            console.log(data)
+            this.posts.push(data)
+            console.log(this.posts)
+             this.posts.forEach(item => {
+               console.log(item.likes)
+             })
+            this.postObj = {}
+          },
+          error => console.log(error)
+         )
      }
-     this.baseService.post(this.postObj)
-      .subscribe(
-        (data: any) => {
-          console.log(data)
-          this.posts.push(data)
-          console.log(this.posts)
-          this.postObj = {}
-        },
-        error => console.log(error)
-      );
+     // this.baseService.post(this.postObj)
+     //  .subscribe(
+     //    (data: any) => {
+     //      console.log(data)
+     //      this.posts.push(data)
+     //      console.log(this.posts)
+     //      this.postObj = {}
+     //    },
+     //    error => console.log(error)
+     //  );
     this.myForm.reset()
     // window.location.reload();
     // this.myForm.value = null
