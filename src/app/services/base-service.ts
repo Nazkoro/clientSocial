@@ -23,6 +23,20 @@ export class BaseService<T> {
   getPosts(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/posts`);
   }
+  getComments(): Observable<[any]> {
+    return this.http.get<[any]>(`${environment.url}/api/comment`);
+  }
+
+
+
+
+
+
+
+
+
+
+
   // putPost(model: any, id: any): Observable<any> {
   //   return this.http.put<any>(`${environment.url}/${id}/like`, model);
   // }

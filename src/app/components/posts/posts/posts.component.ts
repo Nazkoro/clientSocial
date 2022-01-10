@@ -47,6 +47,7 @@ export class PostsComponent implements OnInit {
 
   }*/
    posts: any
+   comments: any
    postObj: any
 
   myForm = new FormGroup({
@@ -59,14 +60,14 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     this.baseService.getPosts().subscribe((data:any) => {
       this.posts = data
-      // console.log('posts',this.posts)
+      console.log(this.posts)
+    });
+
+    this.baseService.getComments().subscribe((data:any) => {
+      this.comments = data
+      console.log( this.comments)
     });
   }
-  //
-  // get f(){
-  //   return this.myForm.controls;
-  // }
-
   onFileChange(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -96,7 +97,7 @@ export class PostsComponent implements OnInit {
     post.currentId = JSON.parse(localStorage.getItem('id'))
     this.baseService.putPost(post).subscribe((data:any) => {
       console.log('return data',data)
-      post.likes = data.likesgit
+      post.likes = data.likes
     });
 
   }
@@ -107,22 +108,16 @@ export class PostsComponent implements OnInit {
       userId: JSON.parse(localStorage.getItem('id'))
     }
      if(this.myForm.value.file){
-       //this.myForm.value.fileSource.name = Date.now()
        const formData = new FormData();
        formData.append('file', this.myForm.get('fileSource').value);
        formData.append('desc',  this.postObj.desc );
        formData.append('userId', this.postObj.userId)
-       // console.log('formData',formData)
-       // console.log('this.myForm', this.myForm)
        this.postObj.img = this.myForm.value.fileSource.name
 
        this.http.post('http://localhost:4000/api/upload', formData)
          .subscribe((data: any) => {
-            // console.log(data)
             this.posts.push(data)
-            // console.log(this.posts)
              this.posts.forEach(item => {
-               // console.log(item.likes)
              })
             this.postObj = {}
           },
