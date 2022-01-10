@@ -63,7 +63,7 @@
         <img src="http://localhost:4000/images/{{post.img}}" alt="" class="img-responsive post-image" />
       </ng-container>
       <div class="reaction" >
-        <button class="btn text-green" (click)="increment(post.likes[0])"><i class="icon ion-thumbsup"></i>  {{post.likes[0]}}</button>
+        <button class="btn text-green" (click)="increment(post)"><i class="icon ion-thumbsup"></i>  {{post.likes.length || 0}}</button>
 <!--        <button class="btn text-red" (click)="increment(post.likes[1])"><i class="fa fa-thumbs-down"></i>{{post.likes[1]}}</button>-->
       </div>
 

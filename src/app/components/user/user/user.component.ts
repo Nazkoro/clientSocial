@@ -28,12 +28,12 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.baseService.getUsers().subscribe((data:any) => {
       this.users = data
-      console.log('users',this.users)
+      // console.log('users',this.users)
 
     });
     this.baseService.getPosts().subscribe((data:any) => {
       this.posts = data
-      console.log('posts',this.posts)
+      // console.log('posts',this.posts)
     });
 
 
@@ -56,9 +56,9 @@ export class UserComponent implements OnInit {
       .subscribe(
 
         (data: any) => {
-          console.log(data)
+          // console.log(data)
           this.posts.push(data)
-          console.log(this.posts)
+          // console.log(this.posts)
           this.post.desc = ""
           // this.done=true;
           },

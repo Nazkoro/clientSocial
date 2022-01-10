@@ -23,6 +23,13 @@ export class BaseService<T> {
   getPosts(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/posts`);
   }
+  // putPost(model: any, id: any): Observable<any> {
+  //   return this.http.put<any>(`${environment.url}/${id}/like`, model);
+  // }
+  putPost(model: any): Observable<any> {
+    console.log('============servise============',model)
+    return this.http.put<any>(`${environment.url}/api/like`, model);
+  }
 /*  get(params?: HttpParams): Observable<[T]> {
     return this.http.get<[T]>(`${environment.url}/timeline/`, {params: params});
   }*/
@@ -42,9 +49,9 @@ export class BaseService<T> {
     return this.http.post<T>(`${environment.url}/api/createpost`, model);
   }
 
-  put(model: T, id?: number): Observable<T> {
-    return this.http.put<T>(`${environment.url}/${this.url}/${id}/`, model);
-  }
+  // put(model: T, id?: number): Observable<T> {
+  //   return this.http.put<T>(`${environment.url}/${this.url}/${id}/`, model);
+  // }
 
   delete(id: number): Observable<any> {
     return this.http.delete<any>(`${environment.url}/${this.url}/${id}/`);

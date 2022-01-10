@@ -6,6 +6,7 @@ import {AuthService} from "../../../../auth/auth.service";
 import {HttpClient} from "@angular/common/http";
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
+
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -58,7 +59,7 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     this.baseService.getPosts().subscribe((data:any) => {
       this.posts = data
-      console.log('posts',this.posts)
+      // console.log('posts',this.posts)
     });
   }
   //
@@ -67,7 +68,6 @@ export class PostsComponent implements OnInit {
   // }
 
   onFileChange(event) {
-
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.myForm.patchValue({
@@ -75,13 +75,31 @@ export class PostsComponent implements OnInit {
       });
     }
   }
-  increment(count){
-    console.log(count)
-    console.log('count',count+1)
-    return count
+
+  increment( post){
+  // this.posts.forEach( (currentPost) => {
+  //   if(currentPost._id === id){
+  //     if(currentPost.likes.includes(JSON.parse(localStorage.getItem('id')))){
+  //       console.log('you likes this post earlier')
+  //        currentPost.likes = currentPost.likes.filter(currentLikeId => currentLikeId !== JSON.parse(localStorage.getItem('id')))
+  //       console.log(currentPost)
+  //     } else {
+  //       currentPost.likes.push(JSON.parse(localStorage.getItem('id')))
+  //       console.log(currentPost.likes)
+  //     }
+  //   }
+  //     this.baseService.putPost(model, id).subscribe((data:any) => {
+  //       this.posts = data
+  //       console.log('posts',this.posts)
+  //     });
+  // })
+    post.currentId = JSON.parse(localStorage.getItem('id'))
+    this.baseService.putPost(post).subscribe((data:any) => {
+      console.log('return data',data)
+      post.likes = data.likesgit
+    });
 
   }
-
   submit()
   {
      this.postObj = {
@@ -94,17 +112,17 @@ export class PostsComponent implements OnInit {
        formData.append('file', this.myForm.get('fileSource').value);
        formData.append('desc',  this.postObj.desc );
        formData.append('userId', this.postObj.userId)
-       console.log('formData',formData)
-       console.log('this.myForm', this.myForm)
+       // console.log('formData',formData)
+       // console.log('this.myForm', this.myForm)
        this.postObj.img = this.myForm.value.fileSource.name
 
        this.http.post('http://localhost:4000/api/upload', formData)
          .subscribe((data: any) => {
-            console.log(data)
+            // console.log(data)
             this.posts.push(data)
-            console.log(this.posts)
+            // console.log(this.posts)
              this.posts.forEach(item => {
-               console.log(item.likes)
+               // console.log(item.likes)
              })
             this.postObj = {}
           },
