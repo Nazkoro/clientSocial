@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   login(model: Login): Observable<any> {
-    return this.http.post<any>(`${environment.url}/api/login`, model)
+    return this.http.post<any>(`${environment.url}/api/auth/login`, model)
       .pipe(
         tap(
           (user) =>{
@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   registration(model: Registration): Observable<any> {
-    return this.http.post<any>(`${environment.url}/api/registration`, model)
+    return this.http.post<any>(`${environment.url}/api/auth/registration`, model)
       .pipe(
         tap(
           (user) =>{
@@ -44,6 +44,32 @@ export class AuthService {
           }
         )
     );
+  }
+  postEmail(email){
+    console.log("email su", email)
+    return this.http.post<any>(`${environment.url}/api/auth/email`, email)
+      .pipe(
+        tap(
+          (data) =>{
+            console.log(data)
+            // this.subject$.next(data)
+            // localStorage.setItem('data', data);
+          }
+        )
+      );
+  }
+  newPassword(password): Observable<any> {
+    return this.http.put<any>(`${environment.url}/api/auth/password`, password)
+      .pipe(
+        tap(
+          (data) =>{
+            console.log(data)
+            // this.subject$.next(data)
+            // localStorage.setItem('data', data);
+          }
+        )
+      );
+
   }
 
 

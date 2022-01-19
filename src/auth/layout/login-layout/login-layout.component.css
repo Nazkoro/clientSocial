@@ -26,6 +26,7 @@
 }
 
 .registration-area {
+  margin-top: 0px;
   grid-area: registration;
 }
 

@@ -7,6 +7,7 @@
 .login-form {
   display: grid;
   grid-template-areas: 'login registration btn';
+
 }
 
 .login {
@@ -25,6 +26,7 @@
   grid-area: btn;
   background-color: #b8b8b8;
   padding: 15px 30px;
+  cursor: pointer;
 }
 
 .single-field {
@@ -42,4 +44,19 @@ input:focus, textarea:focus {
 
 .field-error {
   color: black;
+}
+.btn-recover{
+
+  margin: 10px 0;
+  display: block;
+  background-color: #dc6658;
+  border: 1px solid transparent;
+  color: #fff;
+  cursor: pointer;
+
+
+}
+.btn-recover:hover {
+  background-color: #dc6658;
+
 }

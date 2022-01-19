@@ -7,12 +7,15 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { VerifyComponent } from './verify/verify.component';
+import {RecoverPasswordComponent} from "./components/recover-password/recover-password.component";
+
 
 @NgModule({
   declarations: [
     LoginComponent,
     AuthLayoutComponent,
     RegistrationComponent,
+    RecoverPasswordComponent,
     LoginLayoutComponent,
     VerifyComponent
   ],

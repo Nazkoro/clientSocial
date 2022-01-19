@@ -64,10 +64,25 @@ export class LoginComponent implements OnInit , OnDestroy {
     );
     this.form.reset()
   }
+
+  recoverPassword(){
+    const email = prompt("Введите email")
+    console.log(email)
+    const emailObj = {
+      email :email
+    }
+    this.authService.postEmail(emailObj).subscribe(
+      res => {
+        console.log(111,res)
+        // this.router.navigate(['homepage']);
+
+      },
+      error => this.errorRes = error
+    );
+
+  }
   ngOnDestroy() {
     // this.form = null
   }
 }
 
-// , [Validators.required, Validators.minLength(3)]
-//   , [Validators.required]
