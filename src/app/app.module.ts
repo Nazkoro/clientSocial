@@ -36,6 +36,7 @@ import { FooterComponent } from './components/footer/footer/footer.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { LeftmenuComponent } from './components/leftmenu/leftmenu/leftmenu.component';
 import { HomepagesComponent } from './pages/homepages/homepages.component';
+import {AuthInterceptor} from "../auth/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { HomepagesComponent } from './pages/homepages/homepages.component';
     BrowserAnimationsModule
   ],
   providers: [AboutGuard,
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptService, multi: true}
+    // {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

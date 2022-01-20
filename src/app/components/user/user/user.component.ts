@@ -26,16 +26,19 @@ export class UserComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.baseService.getUsers().subscribe((data:any) => {
-      this.users = data
-      // console.log('users',this.users)
+     //!!necessary coment
+    // this.baseService.getUsers().subscribe((data:any) => {
+    //   this.users = data
+    //   // console.log('users',this.users)
+    //
+    // });
+    // this.baseService.getPosts().subscribe((data:any) => {
+    //   this.posts = data
+    //   // console.log('posts',this.posts)
+    // });
+    //!!necessary coment
 
-    });
-    this.baseService.getPosts().subscribe((data:any) => {
-      this.posts = data
-      // console.log('posts',this.posts)
-    });
-
+    //trash
 
     // this.authService.subject$.subscribe((value => {
     //     if (!value) {
@@ -48,11 +51,12 @@ export class UserComponent implements OnInit {
     //   }
     //
     // ))
+    //trash
   }
   submit(value){
     console.log(value)
     this.post = {...value, userId: JSON.parse(localStorage.getItem('id'))}
-    this.baseService.post(this.post)
+    this.baseService.createPost(this.post)
       .subscribe(
 
         (data: any) => {

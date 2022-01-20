@@ -63,10 +63,10 @@ export class PostsComponent implements OnInit {
       console.log(this.posts)
     });
 
-    this.baseService.getComments().subscribe((data:any) => {
-      this.comments = data
-      console.log( this.comments)
-    });
+    // this.baseService.getComments().subscribe((data:any) => {
+    //   this.comments = data
+    //   console.log( this.comments)
+    // });
   }
   onFileChange(event) {
     if (event.target.files.length > 0) {
@@ -77,7 +77,8 @@ export class PostsComponent implements OnInit {
     }
   }
 
-  increment( post){
+  increment( post ){
+    console.log("===post====", post)
   // this.posts.forEach( (currentPost) => {
   //   if(currentPost._id === id){
   //     if(currentPost.likes.includes(JSON.parse(localStorage.getItem('id')))){
@@ -94,8 +95,8 @@ export class PostsComponent implements OnInit {
   //       console.log('posts',this.posts)
   //     });
   // })
-    post.currentId = JSON.parse(localStorage.getItem('id'))
-    this.baseService.putPost(post).subscribe((data:any) => {
+  //   post.currentId = JSON.parse(localStorage.getItem('id'))
+    this.baseService.updatelike(post).subscribe((data:any) => {
       console.log('return data',data)
       post.likes = data.likes
     });
@@ -105,20 +106,22 @@ export class PostsComponent implements OnInit {
   {
      this.postObj = {
       desc: this.myForm.value.post,
-      userId: JSON.parse(localStorage.getItem('id'))
+      // userId: JSON.parse(localStorage.getItem('id')),
+      //  token: JSON.parse(localStorage.getItem('token'))
     }
      if(this.myForm.value.file){
        const formData = new FormData();
        formData.append('file', this.myForm.get('fileSource').value);
        formData.append('desc',  this.postObj.desc );
-       formData.append('userId', this.postObj.userId)
+       // formData.append('userId', this.postObj.userId)
+       // formData.append('token', this.postObj.token)
        this.postObj.img = this.myForm.value.fileSource.name
 
-       this.http.post('http://localhost:4000/api/upload', formData)
+       this.baseService.createPost(formData)
          .subscribe((data: any) => {
             this.posts.push(data)
-             this.posts.forEach(item => {
-             })
+             // this.posts.forEach(item => {
+             // })
             this.postObj = {}
           },
           error => console.log(error)

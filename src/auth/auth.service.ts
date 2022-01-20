@@ -71,6 +71,19 @@ export class AuthService {
       );
 
   }
+  refreshToken(){
+    return this.http.get<any>(`${environment.url}/api/auth/refresh`, {withCredentials: true})
+      .pipe(
+        tap(
+          (data) =>{
+            console.log(data)
+            // this.subject$.next(data)
+            // localStorage.setItem('data', data);
+          }
+        )
+      );
+
+  }
 
 
 

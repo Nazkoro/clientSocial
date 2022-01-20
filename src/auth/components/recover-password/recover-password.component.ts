@@ -47,13 +47,13 @@ export class RecoverPasswordComponent implements OnInit , OnDestroy {
         // console.log(res);
         // this.form = null
 
-        this.router.navigate(['homepage'],
-          {
-            queryParams:{
-              'token': this.token,
-
-            }
-          });
+        this.router.navigate(['homepage'])
+          // {
+          //   queryParams:{
+          //     'token': this.token,
+          //
+          //   }
+          // });
 
       },
       error => this.errorRes = error

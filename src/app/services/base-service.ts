@@ -18,7 +18,7 @@ export class BaseService<T> {
 
 
   getUsers(): Observable<[any]> {
-    return this.http.get<[any]>(`${environment.url}/api/users`);
+    return this.http.get<[any]>(`${environment.url}/api/user`);
   }
   getPosts(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/posts`);
@@ -29,38 +29,28 @@ export class BaseService<T> {
 
 
 
-
-
-
-
-
-
-
-
   // putPost(model: any, id: any): Observable<any> {
   //   return this.http.put<any>(`${environment.url}/${id}/like`, model);
   // }
-  putPost(model: any): Observable<any> {
+  updatelike(model: any): Observable<any> {
     console.log('============servise============',model)
-    return this.http.put<any>(`${environment.url}/api/like`, model);
+    return this.http.put<any>(`${environment.url}/api/posts/like`, model);
   }
-/*  get(params?: HttpParams): Observable<[T]> {
-    return this.http.get<[T]>(`${environment.url}/timeline/`, {params: params});
-  }*/
+  // get(params?: HttpParams): Observable<[T]> {
+  //   return this.http.get<[T]>(`${environment.url}/timeline/`, {params: params});
+  // }
+  //
+  // get_list(id: number, params?: HttpParams): Observable<[T]> {
+  //   return this.http.get<[T]>(`${environment.url}/${this.url}/${id}`, {params: params});
+  // }
+  //
+  // get_single(id: number): Observable<T> {
+  //   return this.http.get<T>(`${environment.url}/${this.url}/${id}/`);
+  // }
 
-/*
-  get_list(id: number, params?: HttpParams): Observable<[T]> {
-    return this.http.get<[T]>(`${environment.url}/${this.url}/${id}`, {params: params});
-  }
-
-  get_single(id: number): Observable<T> {
-    return this.http.get<T>(`${environment.url}/${this.url}/${id}/`);
-  }
-*/
-
-  post(model: any): Observable<any> {
+  createPost(model: any): Observable<any> {
     console.log(model)
-    return this.http.post<T>(`${environment.url}/api/createpost`, model);
+    return this.http.post<T>(`${environment.url}/api/posts/upload`, model);
   }
 
   // put(model: T, id?: number): Observable<T> {

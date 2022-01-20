@@ -48,16 +48,16 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-
-  token: any;
-
-  private querySubscription: Subscription;
-  constructor(private route: ActivatedRoute){
-
-    this.querySubscription = route.queryParams.subscribe(
-      (queryParam: any) => {
-        this.token = queryParam['token'];
-      }
-    );
-  }
+  //
+  // token: any;
+  //
+  // private querySubscription: Subscription;
+  // constructor(private route: ActivatedRoute){
+  //
+  //   this.querySubscription = route.queryParams.subscribe(
+  //     (queryParam: any) => {
+  //       this.token = queryParam['token'];
+  //     }
+  //   );
+  // }
 }
