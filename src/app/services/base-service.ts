@@ -20,11 +20,14 @@ export class BaseService<T> {
   getUsers(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/user`);
   }
+  getOnlineUsers(): Observable<[any]> {
+    return this.http.get<[any]>(`${environment.url}/api/user/online`);
+  }
   getPosts(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/posts`);
   }
   getComments(): Observable<[any]> {
-    return this.http.get<[any]>(`${environment.url}/api/comment`);
+    return this.http.get<[any]>(`${environment.url}/api/comment/print`);
   }
 
 
@@ -52,10 +55,19 @@ export class BaseService<T> {
     console.log(model)
     return this.http.post<T>(`${environment.url}/api/posts/upload`, model);
   }
+  createComment(model: any): Observable<any> {
+    console.log(model)
+    return this.http.post<T>(`${environment.url}/api/comment/create`, model);
+  }
+
 
   // put(model: T, id?: number): Observable<T> {
   //   return this.http.put<T>(`${environment.url}/${this.url}/${id}/`, model);
   // }
+  logoutUser(model): Observable<any> {
+    console.log()
+    return this.http.post<T>(`${environment.url}/api/auth/logout`, model);
+  }
 
   delete(id: number): Observable<any> {
     return this.http.delete<any>(`${environment.url}/${this.url}/${id}/`);

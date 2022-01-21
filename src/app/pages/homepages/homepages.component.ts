@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {BaseService} from "../../services/base-service";
 
 
 @Component({
@@ -9,8 +10,6 @@ import { Component, OnInit } from '@angular/core';
 export class HomepagesComponent implements OnInit {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

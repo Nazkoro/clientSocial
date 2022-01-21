@@ -27,11 +27,11 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
      //!!necessary coment
-    // this.baseService.getUsers().subscribe((data:any) => {
-    //   this.users = data
-    //   // console.log('users',this.users)
-    //
-    // });
+    this.baseService.getUsers().subscribe((data:any) => {
+      this.users = data
+      // console.log('users',this.users)
+
+    });
     // this.baseService.getPosts().subscribe((data:any) => {
     //   this.posts = data
     //   // console.log('posts',this.posts)

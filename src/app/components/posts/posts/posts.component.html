@@ -44,47 +44,39 @@
   <!-- Post Content
   ================================================= -->
   <ng-container *ngIf="posts">
-    <div class="post-content" *ngFor="let post of posts">
 
-      <div class="post-container">
-        <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
-        <div class="post-detail">
-          <div class="user-info">
-            <h5><a href="timeline.html" class="profile-link">{{post.userId}}</a> <span class="following">following</span></h5>
-            <p class="text-muted">{{post.createdAt | date}}</p>
+      <div class="post-content" *ngFor="let post of posts">
+        <ng-container *ngIf="post.img">
+          <img src="http://localhost:4000/images/{{post.img}}" alt="" class="img-responsive post-image" />
+        </ng-container>
+        <div class="post-container">
+          <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
+          <div class="post-detail">
+            <div class="user-info">
+              <h5><a href="timeline.html" class="profile-link">{{post.userId}}</a> <span class="following">following</span></h5>
+              <p class="text-muted">{{post.createdAt | date}}</p>
+            </div>
+            <div class="reaction" >
+              <button class="btn text-green" (click)="increment(post)"><i class="icon ion-thumbsup"></i>  {{post.likes?.length || 0}}</button>
+              <!--        <button class="btn text-red" (click)="increment(post.likes[1])"><i class="fa fa-thumbs-down"></i>{{post.likes[1]}}</button>-->
+            </div>
+            <div class="line-divider"></div>
+            <div class="post-text">
+              <p><i class="em em-thumbsup"></i> <i class="em em-thumbsup"></i> {{post.desc}}</div>
+            <app-comment [coments]="post.coments"></app-comment>
+<!--            <div class="line-divider"></div>-->
+<!--            <div class="post-comment">-->
+<!--              <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />-->
+<!--              <p><a href="timeline.html" class="profile-link">Julia </a>This is Comment</p>-->
+<!--            </div>-->
+<!--            <div class="post-comment">-->
+<!--              <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />-->
+<!--              <input type="text" class="form-control" placeholder="Post a comment">-->
+<!--            </div>-->
+            </div>
+
           </div>
-          <div class="line-divider"></div>
-          <div class="post-text">
-            <p><i class="em em-thumbsup"></i> <i class="em em-thumbsup"></i> {{post.desc}}</div>
-          <div class="line-divider"></div>
         </div>
-      </div>
-      <ng-container *ngIf="post.img">
-        <img src="http://localhost:4000/images/{{post.img}}" alt="" class="img-responsive post-image" />
-      </ng-container>
-      <div class="reaction" >
-        <button class="btn text-green" (click)="increment(post)"><i class="icon ion-thumbsup"></i>  {{post.likes?.length || 0}}</button>
-<!--        <button class="btn text-red" (click)="increment(post.likes[1])"><i class="fa fa-thumbs-down"></i>{{post.likes[1]}}</button>-->
-      </div>
-      <div class="line-divider"></div>
-
-
-
-
-<!--      <div class="post-comment">-->
-<!--        <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />-->
-<!--        <p><a href="timeline.html" class="profile-link">{{comments.userId}} </a><i class="em em-laughing"></i> {{comments.text}}</p>-->
-<!--      </div>-->
-
-
-
-
-
-<!--      <div class="reaction" >-->
-<!--        <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>-->
-<!--        <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>-->
-<!--      </div>-->
-    </div>
 
   </ng-container>
 
