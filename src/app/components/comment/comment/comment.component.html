@@ -1,8 +1,8 @@
 <div class="line-divider"></div>
-<ng-container *ngIf="coments">
-<div class="post-comment" *ngFor="let coment of coments">
+<ng-container *ngIf="currentPost.coments">
+<div class="post-comment" *ngFor="let coment of currentPost.coments">
   <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm" />
-  <p><a href="timeline.html" class="profile-link">{{coment.userId}} </a>{{coment.text}}</p>
+  <p><a href="timeline.html" class="profile-link">{{coment.username}} </a>{{coment.text}}</p>
 </div>
 </ng-container>
 <div class="post-comment">

@@ -15,37 +15,6 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class PostsComponent implements OnInit {
 
-/*  posts: any
-  post:any = {
-    desc: ""
-  }
-
-  constructor(private baseService: BaseService<any>, private router: Router, private authService: AuthService,private http: HttpClient) { }
-
-  ngOnInit(): void {
-    this.baseService.getPosts().subscribe((data:any) => {
-      this.posts = data
-      console.log('posts',this.posts)
-    });
-
-  }
-
-  submit(value){
-    console.log(value)
-    this.post = {...value, userId: JSON.parse(localStorage.getItem('id'))}
-    this.baseService.post(this.post)
-      .subscribe(
-
-        (data: any) => {
-          console.log(data)
-          this.posts.push(data)
-          console.log(this.posts)
-          this.post.desc = ""
-        },
-        error => console.log(error)
-      );
-
-  }*/
    posts: any
    comments: any
    postObj: any

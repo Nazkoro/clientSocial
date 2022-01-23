@@ -1,9 +1,4 @@
 
-
-/*.login-image {*/
-/*  background-color: #dc4734;*/
-/*}*/
-
 .login-form {
   display: grid;
   grid-template-areas: 'login registration btn';

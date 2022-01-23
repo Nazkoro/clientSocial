@@ -20,6 +20,9 @@ export class BaseService<T> {
   getUsers(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/user`);
   }
+  getUser(): Observable<[any]> {
+    return this.http.get<[any]>(`${environment.url}/api/user/account`);
+  }
   getOnlineUsers(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/user/online`);
   }
@@ -35,10 +38,21 @@ export class BaseService<T> {
   // putPost(model: any, id: any): Observable<any> {
   //   return this.http.put<any>(`${environment.url}/${id}/like`, model);
   // }
+
+
+  addUserInfo(model: any): Observable<any> {
+    return this.http.put<any>(`${environment.url}/api/user/add-info`, model);
+  }
   updatelike(model: any): Observable<any> {
-    console.log('============servise============',model)
     return this.http.put<any>(`${environment.url}/api/posts/like`, model);
   }
+  followOnUser(model: any): Observable<any> {
+    return this.http.put<any>(`${environment.url}/api/user/follow`, model);
+  }
+  unfollowOnUser(model: any): Observable<any> {
+    return this.http.put<any>(`${environment.url}/api/user/unfollow`, model);
+  }
+
   // get(params?: HttpParams): Observable<[T]> {
   //   return this.http.get<[T]>(`${environment.url}/timeline/`, {params: params});
   // }

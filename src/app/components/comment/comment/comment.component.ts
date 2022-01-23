@@ -7,26 +7,28 @@ import {BaseService} from '../../../services/base-service';
   styleUrls: ['./comment.component.css','../../../../../css/style.css', '../../../../../css/bootstrap.min.css','../../../../../css/ionicons.min.css','../../../../../css/font-awesome.min.css']
 })
 export class CommentComponent implements OnInit {
-   @Input() coments: any ;
+   @Input() currentPost: any ;
    text: any;
 
 
   constructor(private baseService: BaseService<any>) { }
 
   ngOnInit(): void {
+
+
   }
   submit(){
-    console.log(this.text)
+    console.log(this.text);
+    console.log("111",this.currentPost)
     const objComment = {
-      postId: this.coments[0].postId,
+      postId: this.currentPost._id,
       text: this.text
   }
     this.baseService.createComment(objComment).subscribe((data:any) => {
       console.log('return data',data)
-      // post.likes = data.likes
+
     });
     this.text = ""
-
 
   }
 

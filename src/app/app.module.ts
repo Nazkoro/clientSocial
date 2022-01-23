@@ -46,6 +46,9 @@ import { TimelineComponent } from './components/timeline/timeline/timeline.compo
 import { TimelineAboutComponent } from './components/timeline-about/timeline-about/timeline-about.component';
 import { TimelineAlbumComponent } from './components/timeline-album/timeline-album/timeline-album.component';
 import { TimelineFriendsComponent } from './components/timeline-friends/timeline-friends/timeline-friends.component';
+import { ChatpagesComponent } from './pages/chatpages/chatpages.component';
+import { ContactComponent } from './components/contact/contact/contact.component';
+import { MyNewsfeedComponent } from './pages/my-newsfeed/my-newsfeed.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import { TimelineFriendsComponent } from './components/timeline-friends/timeline
     TimelineComponent,
     TimelineAboutComponent,
     TimelineAlbumComponent,
-    TimelineFriendsComponent
+    TimelineFriendsComponent,
+    ChatpagesComponent,
+    ContactComponent,
+    MyNewsfeedComponent
   ],
   imports: [
     BrowserModule,

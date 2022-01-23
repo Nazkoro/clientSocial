@@ -1,19 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-//
-// @Component({
-//   selector: 'app-registration',
-//   templateUrl: './registration.component.html',
-//   styleUrls: ['./registration.component.css']
-// })
-// export class RegistrationComponent implements OnInit {
-//
-//   constructor() { }
-//
-//   ngOnInit(): void {
-//   }
-//
-// }
-
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../auth.service';
@@ -51,7 +35,7 @@ export class RegistrationComponent implements OnInit {
   submit(): void {
     this.aSub = this.authService.registration(this.form?.getRawValue()).subscribe(
       res =>
-        this.router.navigate(['user']),
+        this.router.navigate(['homepage']),
         // alert('Send email'),
       error => console.log(error.error)
     );
