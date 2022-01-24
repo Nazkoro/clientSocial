@@ -1,0 +1,20 @@
+
+<h2 class="create-acc">Create An Account</h2>
+<form class="login-form" [formGroup]="formGroup" (input)="onFormChange()" (ngSubmit)="onSubmit()">
+
+  <div class="login">
+    <input class="single-field" type="text" formControlName="username" placeholder="username">
+
+  </div>
+  <div class="login">
+    <input class="single-field" type="email" formControlName="email" placeholder="email">
+
+  </div>
+  <div class="registration">
+    <input class="single-field" type="password" formControlName="password" placeholder="password">
+
+  </div>
+
+  <button class="submit-btn" type="submit" [disabled]="disabled || formGroup.invalid || !!formError">Создать</button>
+  <span *ngIf="formError">{{formError}}</span>
+</form>

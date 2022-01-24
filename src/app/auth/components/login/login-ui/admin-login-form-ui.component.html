@@ -1,0 +1,40 @@
+<!--<form [formGroup]="formGroup"-->
+<!--      class="login-form"-->
+<!--      (input)="onFormChange()"-->
+<!--      (ngSubmit)="onSubmit()">-->
+<!--  <h2>Авторизация на сайте</h2>-->
+<!--  <mat-form-field class="login-form__input-control">-->
+<!--    <mat-label>Логин</mat-label>-->
+<!--    <input matInput formControlName="login">-->
+<!--    <mat-error *ngIf="formGroup.hasError('required', 'login')">Это поле обязательно</mat-error>-->
+<!--  </mat-form-field>-->
+
+<!--  <mat-form-field class="login-form__input-control">-->
+<!--    <mat-label>Пароль</mat-label>-->
+<!--    <input matInput type="password" formControlName="password">-->
+<!--    <mat-error *ngIf="formGroup.hasError('required', 'password')">Это поле обязательно</mat-error>-->
+<!--  </mat-form-field>-->
+
+<!--  <div class="login-form__input-control">-->
+<!--    <button mat-raised-button color="primary"-->
+<!--            [disabled]="disabled || formGroup.invalid || !!formError">Войти</button>-->
+<!--    <mat-error *ngIf="formError">{{formError}}</mat-error>-->
+<!--  </div>-->
+<!--</form>-->
+
+
+<form class="login-form" [formGroup]="formGroup" (input)="onFormChange()" (ngSubmit)="onSubmit()">>
+
+  <div class="login">
+    <input class="single-field" type="text" formControlName="email" placeholder="email">
+  </div>
+
+  <div class="registration">
+    <input class="single-field" type="password" formControlName="password" placeholder="password">
+  </div>
+
+  <button class="btn" type="submit" [disabled]="disabled || formGroup.invalid || !!formError">Войти в IT</button>
+  <span *ngIf="formError">{{formError}}</span>
+</form>
+<!--<button class="btn-recover" (click)="recoverPassword()">Забыли пароль?</button>-->
+

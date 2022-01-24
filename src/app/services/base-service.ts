@@ -29,6 +29,10 @@ export class BaseService<T> {
   getPosts(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/posts`);
   }
+  getMyPosts(): Observable<[any]> {
+    return this.http.get<[any]>(`${environment.url}/api/posts/my-post`);
+  }
+
   getComments(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/comment/print`);
   }

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../environments/environment';
+import {environment} from '../../environments/environment';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Login, Registration, Token, Verify} from './models';
 import {tap} from 'rxjs/operators';
@@ -26,10 +26,7 @@ export class AuthService {
             localStorage.setItem('token', user.accessToken);
             localStorage.setItem('id', JSON.stringify(user.user.id));
           }
-          // (token: Token) => {
-          //   this.setToken(token.access);
-          //   localStorage.setItem('token', token.access);
-          // }
+
         )
       );
   }
@@ -52,8 +49,7 @@ export class AuthService {
         tap(
           (data) =>{
             console.log(data)
-            // this.subject$.next(data)
-            // localStorage.setItem('data', data);
+
           }
         )
       );
@@ -64,8 +60,7 @@ export class AuthService {
         tap(
           (data) =>{
             console.log(data)
-            // this.subject$.next(data)
-            // localStorage.setItem('data', data);
+
           }
         )
       );
@@ -77,8 +72,7 @@ export class AuthService {
         tap(
           (data) =>{
             console.log(data)
-            // this.subject$.next(data)
-            // localStorage.setItem('data', data);
+
           }
         )
       );

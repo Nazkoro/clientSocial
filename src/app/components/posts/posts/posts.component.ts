@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Subscription} from 'rxjs';
 import {BaseService} from '../../../services/base-service';
 import {Router} from '@angular/router';
-import {AuthService} from "../../../../auth/auth.service";
+import {AuthService} from "../../../auth/auth.service";
 import {HttpClient} from "@angular/common/http";
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 

@@ -1,0 +1,6 @@
+<app-reg-ui
+  *ngIf="loaded$ | async"
+  [formError]="serverError$ | async"
+  [disabled]="loading$ | async"
+  (registr)="onRegistr($event)"
+></app-reg-ui>

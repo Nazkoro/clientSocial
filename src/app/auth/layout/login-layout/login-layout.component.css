@@ -22,7 +22,7 @@
 
 .img-area {
   grid-area: img;
-  background-image: url("../../../assets/img/angular-icon-1.svg");
+  background-image: url("../../../../assets/img/angular-icon-1.svg");
 }
 
 .registration-area {
