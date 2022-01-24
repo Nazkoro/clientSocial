@@ -1,21 +1,3 @@
-// import { NgModule } from '@angular/core';
-// import { BrowserModule } from '@angular/platform-browser';
-//
-// import { AppRoutingModule } from './app-routing.module';
-// import { AppComponent } from './app.component';
-//
-// @NgModule({
-//   declarations: [
-//     AppComponent
-//   ],
-//   imports: [
-//     BrowserModule,
-//     AppRoutingModule
-//   ],
-//   providers: [],
-//   bootstrap: [AppComponent]
-// })
-// export class AppModule { }
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -49,6 +31,13 @@ import { TimelineFriendsComponent } from './components/timeline-friends/timeline
 import { ChatpagesComponent } from './pages/chatpages/chatpages.component';
 import { ContactComponent } from './components/contact/contact/contact.component';
 import { MyNewsfeedComponent } from './pages/my-newsfeed/my-newsfeed.component';
+import { MypostComponent } from './components/mypost/mypost/mypost.component';
+import { StoreModule } from '@ngrx/store';
+
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import {DEFAULT_ROUTER_FEATURENAME, routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -71,7 +60,8 @@ import { MyNewsfeedComponent } from './pages/my-newsfeed/my-newsfeed.component';
     TimelineFriendsComponent,
     ChatpagesComponent,
     ContactComponent,
-    MyNewsfeedComponent
+    MyNewsfeedComponent,
+    MypostComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +71,13 @@ import { MyNewsfeedComponent } from './pages/my-newsfeed/my-newsfeed.component';
     AuthModule,
     ReactiveFormsModule,
     // ProfileModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot({
+      [DEFAULT_ROUTER_FEATURENAME]: routerReducer
+    }, {}),
+    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [AboutGuard,
     // {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptService, multi: true},
