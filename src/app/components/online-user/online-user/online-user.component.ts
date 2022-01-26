@@ -14,9 +14,9 @@ export class OnlineUserComponent implements OnInit {
   ngOnInit(): void {
 
     this.baseService.getOnlineUsers().subscribe((data:any) => {
-      console.log(data)
+      // console.log(data)
       this.onlineUsers = data
-      console.log(this.onlineUsers)
+      // console.log(this.onlineUsers)
     });
   }
 

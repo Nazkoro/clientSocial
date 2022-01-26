@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['']);
     this.baseService.logoutUser({}).subscribe((data:any) => {
 
-      console.log(data)
+      // console.log(data)
     });
   }
 

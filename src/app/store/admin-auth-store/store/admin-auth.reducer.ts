@@ -1,7 +1,7 @@
 import {createReducer, on} from '@ngrx/store';
 import {login, loginFailed, loginSuccess , registr} from './admin-auth.actions';
 
-export const ADMIN_AUTH_FEATURE_NAME = 'admin-auth';
+export const ADMIN_AUTH_FEATURE_NAME = 'auth';
 
 export interface AuthData {
   accessToken: string;

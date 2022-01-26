@@ -4,8 +4,9 @@ import {ADMIN_AUTH_FEATURE_NAME, AdminAuthState} from './admin-auth.reducer';
 const getFeature = createFeatureSelector<AdminAuthState>(ADMIN_AUTH_FEATURE_NAME);
 
 export const getLoading = createSelector(
-  getFeature,
-  state => state.loading
+   getFeature,
+  // (state) => state.auth,
+    state => state.loading
 );
 
 export const getLoaded = createSelector(

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {login, loginFailed, loginSuccess , registr } from './admin-auth.actions';
 import {catchError, map, switchMap} from 'rxjs/operators';
-import {AdminAuthService} from '../services/admin-auth.service';
+import {AdminAuthService} from './admin-auth.service';
 import {of} from 'rxjs';
 
 @Injectable()

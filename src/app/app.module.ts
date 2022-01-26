@@ -35,6 +35,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import {DEFAULT_ROUTER_FEATURENAME, routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
+import {reducers} from "./store/app.state";
+import {PostsStoreModule} from "./store/posts-store/posts-store.module";
 
 @NgModule({
   declarations: [
@@ -68,9 +70,10 @@ import {DEFAULT_ROUTER_FEATURENAME, routerReducer, StoreRouterConnectingModule} 
     AuthModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers),
     StoreRouterConnectingModule.forRoot(),
     AdminAuthStoreModule,
+    PostsStoreModule,
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],

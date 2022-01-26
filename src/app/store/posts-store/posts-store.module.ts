@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {StoreModule} from '@ngrx/store';
-import {ADMIN_AUTH_FEATURE_NAME, adminAuthReducer} from './store/admin-auth.reducer';
+import {POST_FEATURE_NAME, PostReducer} from './posts-store.reducer';
 import {HttpClientModule} from '@angular/common/http';
 import {EffectsModule} from '@ngrx/effects';
-import {AdminAuthEffects} from './store/admin-auth.effects';
+import {PostsStoreEffects} from './posts-store.effects';
 
 @NgModule({
   declarations: [],
@@ -15,7 +15,7 @@ import {AdminAuthEffects} from './store/admin-auth.effects';
     //   ADMIN_AUTH_FEATURE_NAME,
     //   adminAuthReducer
     // ),
-    EffectsModule.forFeature([AdminAuthEffects])
+    EffectsModule.forFeature([PostsStoreEffects])
   ]
 })
-export class AdminAuthStoreModule { }
+export class PostsStoreModule { }

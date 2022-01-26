@@ -2,6 +2,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {Injectable} from '@angular/core';
+import {tap} from "rxjs/operators";
 
 
 @Injectable({
@@ -27,7 +28,13 @@ export class BaseService<T> {
     return this.http.get<[any]>(`${environment.url}/api/user/online`);
   }
   getPosts(): Observable<[any]> {
-    return this.http.get<[any]>(`${environment.url}/api/posts`);
+    return this.http.get<[any]>(`${environment.url}/api/posts`).pipe(
+      tap(
+        (user) =>{
+          console.log(user)
+        }
+      )
+    );
   }
   getMyPosts(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/posts/my-post`);

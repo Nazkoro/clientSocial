@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
   constructor(private baseService: BaseService<any>, private router: Router, private authService: AuthService,private http: HttpClient) { }
   ngOnInit(): void {
     this.baseService.getUsers().subscribe((data:any) => {
-      console.log(data)
+      // console.log(data)
       this.users = data
     });
 
