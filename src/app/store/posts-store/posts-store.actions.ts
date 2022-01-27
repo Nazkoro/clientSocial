@@ -3,10 +3,6 @@ import {createAction, props} from '@ngrx/store';
 export const getPosts = createAction(
   '[get] Post'
 );
-export const createPosts = createAction(
-  '[get] Post',
-  props<{formData}>()
-);
 
 export const PostsSuccess = createAction(
   '[get] Post success',
@@ -18,7 +14,21 @@ export const PostsFailed = createAction(
   props<{serverError: string}>()
 );
 
+export const createPosts = createAction(
+  '[post] Post ',
+  props<{formData}>()
+);
+
+export const putLikePost = createAction(
+  '[put] Like ',
+  props<{post}>()
+);
+
 export const PostCreated = createAction(
   '[get] Post created',
+  props<{post: any}>()
+);
+export const PostLiked = createAction(
+  '[get] Post liked',
   props<{post: any}>()
 );

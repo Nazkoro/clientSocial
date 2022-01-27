@@ -29,3 +29,8 @@ export const createPosts = createSelector(
   state => state.posts
 );
 
+export const updLikePost = createSelector(
+  getFeature,
+  state => state.posts
+  //state => state.selectedPost
+);

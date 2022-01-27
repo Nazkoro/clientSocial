@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
 import {BaseService} from '../../../services/base-service';
 import {Router} from '@angular/router';
@@ -8,7 +8,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import {select, Store} from "@ngrx/store";
 import {login} from "../../../store/admin-auth-store/store/admin-auth.actions";
 import * as postsStore from '../../../store/posts-store/posts-store.selectors';
-import {createPosts, getPosts} from "../../../store/posts-store/posts-store.actions";
+import {createPosts, getPosts, putLikePost} from "../../../store/posts-store/posts-store.actions";
 
 
 
@@ -19,7 +19,7 @@ import {createPosts, getPosts} from "../../../store/posts-store/posts-store.acti
 
 })
 export class PostsComponent implements OnInit {
-  // posts: any
+  posts: any
   comments: any
   postObj: any
 
@@ -31,15 +31,26 @@ export class PostsComponent implements OnInit {
   loading$: Observable<boolean> = this.store$.pipe(select(postsStore.getLoading));
   loaded$: Observable<boolean> = this.store$.pipe(select(postsStore.getLoaded));
   posts$: Observable<any> = this.store$.pipe(select(postsStore.getPosts));
+
   serverError$: Observable<string> = this.store$.pipe(select(postsStore.getServerError));
 
   serverError = '';
 
-  constructor(private store$: Store, private router: Router) { }
+  // subscription = new Subscription();
+
+  constructor(private store$: Store, private router: Router, private baseService : BaseService <any>) { }
 
   ngOnInit(): void {
     this.store$.dispatch(getPosts());
+
   }
+
+  // private getPosts(): void {
+  //   this.subscription.add(
+  //     this.store$.pipe(select(postsStore.getPosts))
+  //       .subscribe(posts => this.posts = posts)
+  //   );
+  // }
 
   onFileChange(event) {
     if (event.target.files.length > 0) {
@@ -48,6 +59,16 @@ export class PostsComponent implements OnInit {
         fileSource: file
       });
     }
+  }
+
+
+  likePost( post ){
+    this.store$.dispatch(putLikePost({post}))
+    // this.store$.dispatch(getPosts());
+    // this.baseService.updatelike(post).subscribe((data:any) => {
+    //   console.log('return data',data)
+    //   post.likes = data.likes
+    // });
   }
 
   submit() {
@@ -60,9 +81,14 @@ export class PostsComponent implements OnInit {
       formData.append('desc',  this.postObj.desc );
       this.postObj.img = this.myForm.value.fileSource.name
       this.store$.dispatch(createPosts({formData}))
+        //this.store$.dispatch(getPosts());
     }
     this.myForm.reset()
   }
+  // ngOnDestroy(): void {
+  //   this.subscription.unsubscribe()
+  //
+  // }
 
 }
 

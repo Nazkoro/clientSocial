@@ -18,6 +18,8 @@ export class BaseService<T> {
   }
 
 
+
+
   getUsers(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/user`);
   }
@@ -42,6 +44,9 @@ export class BaseService<T> {
 
   getComments(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/comment/print`);
+  }
+  getMyFriends(): Observable<[any]> {
+    return this.http.get<[any]>(`${environment.url}/api/user/friends`);
   }
 
 
@@ -96,5 +101,9 @@ export class BaseService<T> {
 
   delete(id: number): Observable<any> {
     return this.http.delete<any>(`${environment.url}/${this.url}/${id}/`);
+  }
+
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete<any>(`${environment.url}/api/user/${id}/`);
   }
 }

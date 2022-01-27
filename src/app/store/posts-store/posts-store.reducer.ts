@@ -1,25 +1,32 @@
 import {createReducer, on} from '@ngrx/store';
-import {getPosts, PostsSuccess, PostsFailed, PostCreated} from './posts-store.actions';
+import {getPosts, PostsSuccess, PostsFailed, PostCreated, putLikePost, PostLiked} from './posts-store.actions';
 
 export const POST_FEATURE_NAME = 'post';
 
-// export interface Post {
-//   posts: [];
-// posts: [];
-// }
+export interface Post {
+  _id: string;
+  userId: string;
+  username: string;
+  desc: string;
+  img: string;
+  likes: [];
+  coments: [];
+}
 
 export interface PostsState {
   loading: boolean;
   loaded: boolean;
   serverError: string;
-  posts?: any[];
+  selectedPost: any;
+  posts?: Post[];
 }
 
 const initialState: PostsState = {
   loaded: true,
   loading: false,
+  selectedPost: null,
   serverError: '',
-  posts: undefined
+  posts: undefined,
 };
 
 export const PostReducer = createReducer(
@@ -36,10 +43,20 @@ export const PostReducer = createReducer(
     loading: false,
     serverError: ''
   })),
+
   on(PostCreated, (state, {post}) => ({
     ...state,
     posts: [post, ...state.posts],
   })),
+
+  on(PostLiked, (state, {post}) => {
+  console.log(post)
+    return {
+    ...state,
+    selectedPost: post,
+    posts: [post, ...state.posts],
+  }}),
+
   on(PostsFailed, (state, {serverError}) => ({
     ...state,
     postsData: null,

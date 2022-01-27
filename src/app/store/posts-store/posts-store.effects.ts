@@ -1,6 +1,14 @@
 import {Injectable} from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {createPosts, getPosts, PostCreated, PostsFailed, PostsSuccess} from './posts-store.actions';
+import {
+  createPosts,
+  getPosts,
+  PostCreated,
+  PostLiked,
+  PostsFailed,
+  PostsSuccess,
+  putLikePost
+} from './posts-store.actions';
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {BaseService} from '../../../app/services/base-service'
 import {of} from 'rxjs';
@@ -33,7 +41,22 @@ export class PostsStoreEffects {
       ofType(createPosts),
       switchMap(({formData}) => this.baseService.createPost(formData)
         .pipe(
-          map(({post}) => PostCreated({post})),
+          map((post) => PostCreated({post})),
+          catchError(
+            error => of(PostsFailed({
+              serverError: error.message
+            }))
+          )
+        ))
+    );
+  });
+
+  putLikePost$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(putLikePost),
+      switchMap(({post}) => this.baseService.updatelike(post)
+        .pipe(
+          map((post) => PostLiked({post})),
           catchError(
             error => of(PostsFailed({
               serverError: error.message
