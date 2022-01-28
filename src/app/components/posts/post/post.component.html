@@ -1,0 +1,26 @@
+<ng-container *ngIf="post.img">
+  <img src="http://localhost:4000/images/{{post.img}}" alt="" class="img-responsive post-image" style="width: 100%"/>
+</ng-container>
+<div class="post-container">
+  <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />
+  <div class="post-detail">
+    <div class="user-info">
+      <h5><a href="timeline.html" class="profile-link">{{post.username}}</a> <span class="following">following</span></h5>
+      <p class="text-muted">{{post.createdAt | date}}</p>
+    </div>
+
+    <div class="post-text">
+      <p><i class="em em-thumbsup"></i> <i class="em em-thumbsup"></i> {{post.desc}}
+    </div>
+
+    <app-like [like]="post.likes"
+              [postId]="post._id"
+      (updateLike)="onUpdateLike($event)"
+    >
+    </app-like>
+
+    <app-comment [currentPost]="post"></app-comment>
+    <div class="line-divider"></div>
+    <div class="line-divider"></div>
+  </div>
+</div>
