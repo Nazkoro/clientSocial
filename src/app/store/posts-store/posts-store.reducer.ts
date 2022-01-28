@@ -9,7 +9,10 @@ export interface Post {
   username: string;
   desc: string;
   img: string;
-  likes: [];
+  likes: {
+    isLiked: boolean,
+    count: number
+  };
   coments: [];
 }
 
@@ -19,6 +22,8 @@ export interface PostsState {
   serverError: string;
   selectedPost: any;
   posts?: Post[];
+
+  // likes: Post["likes"];
 }
 
 const initialState: PostsState = {
@@ -27,6 +32,7 @@ const initialState: PostsState = {
   selectedPost: null,
   serverError: '',
   posts: undefined,
+  // likes: undefined,
 };
 
 export const PostReducer = createReducer(
@@ -49,13 +55,25 @@ export const PostReducer = createReducer(
     posts: [post, ...state.posts],
   })),
 
-  on(PostLiked, (state, {post}) => {
-  console.log(post)
-    return {
-    ...state,
-    selectedPost: post,
-    posts: [post, ...state.posts],
-  }}),
+  on(PostLiked, (state, {likes}) => {
+  console.log("salam popalam", likes)
+    const currentPost = state.posts.find(x=> x._id === likes._id)
+    // isLiked? likes.count + 1 : likes.count
+   return currentPost.likes = likes
+//     return {
+//     ...state,
+//       currentPost.likes: ,
+// /*    posts: [post, ...state.posts],*/
+//   }
+  }),
+
+  // on(PostLiked, (state, {post}) => {
+  //   console.log(post)
+  //   return {
+  //     ...state,
+  //     selectedPost: post,
+  //     /*    posts: [post, ...state.posts],*/
+  //   }}),
 
   on(PostsFailed, (state, {serverError}) => ({
     ...state,

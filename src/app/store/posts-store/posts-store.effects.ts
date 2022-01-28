@@ -54,9 +54,9 @@ export class PostsStoreEffects {
   putLikePost$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(putLikePost),
-      switchMap(({post}) => this.baseService.updatelike(post)
+      switchMap(({likeAndPostId}) => this.baseService.updatelike(likeAndPostId)
         .pipe(
-          map((post) => PostLiked({post})),
+          map((likes) => PostLiked({likes})),
           catchError(
             error => of(PostsFailed({
               serverError: error.message

@@ -19,16 +19,26 @@ export const createPosts = createAction(
   props<{formData}>()
 );
 
-export const putLikePost = createAction(
-  '[put] Like ',
-  props<{post}>()
-);
-
 export const PostCreated = createAction(
   '[get] Post created',
   props<{post: any}>()
 );
+
+export const putLikePost = createAction(
+  '[put] Like ',
+  props<{likeAndPostId}>()
+);
+
 export const PostLiked = createAction(
   '[get] Post liked',
-  props<{post: any}>()
+  props<{likes: any}>()
 );
+// export const putLikePost = createAction(
+//   '[put] Like ',
+//   props<{post}>()
+// );
+//
+// export const PostLiked = createAction(
+//   '[get] Post liked',
+//   props<{post: any}>()
+// );

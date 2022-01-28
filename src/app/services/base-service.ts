@@ -60,7 +60,12 @@ export class BaseService<T> {
     return this.http.put<any>(`${environment.url}/api/user/add-info`, model);
   }
   updatelike(model: any): Observable<any> {
-    return this.http.put<any>(`${environment.url}/api/posts/like`, model);
+    console.log("baseService", model)
+    return this.http.put<any>(`${environment.url}/api/posts/like`, model,{
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
   }
   followOnUser(model: any): Observable<any> {
     return this.http.put<any>(`${environment.url}/api/user/follow`, model);

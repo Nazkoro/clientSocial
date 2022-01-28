@@ -37,6 +37,8 @@ import { EffectsModule } from '@ngrx/effects';
 import {DEFAULT_ROUTER_FEATURENAME, routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {reducers} from "./store/app.state";
 import {PostsStoreModule} from "./store/posts-store/posts-store.module";
+import { LikeComponent } from './components/posts/like/like.component';
+import { PostComponent } from './components/posts/post/post.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import {PostsStoreModule} from "./store/posts-store/posts-store.module";
     ChatpagesComponent,
     ContactComponent,
     MyNewsfeedComponent,
-    MypostComponent
+    MypostComponent,
+    LikeComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

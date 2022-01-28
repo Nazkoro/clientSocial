@@ -28,9 +28,14 @@ export const createPosts = createSelector(
   getFeature,
   state => state.posts
 );
-
+//испрваить
 export const updLikePost = createSelector(
   getFeature,
-  state => state.posts
-  //state => state.selectedPost
+   state => state.posts
 );
+
+// export const updLikePost = createSelector(
+//   getFeature,
+//   // state => state.posts
+//   state => state.selectedPost
+// );
