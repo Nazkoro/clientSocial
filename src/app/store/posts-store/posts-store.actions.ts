@@ -31,7 +31,7 @@ export const putLikePost = createAction(
 
 export const PostLiked = createAction(
   '[get] Post liked',
-  props<{likes: any}>()
+  props<{post: any}>()
 );
 // export const putLikePost = createAction(
 //   '[put] Like ',

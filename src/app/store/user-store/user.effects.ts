@@ -7,7 +7,7 @@ import {of as observableOf} from 'rxjs';
 import {loadUserFailureAction, loadUserRequestAction, loadUserSuccessAction} from "./user.actions";
 
 @Injectable()
-export class BookStoreEffects {
+export class userStoreEffects {
   constructor(private baseService: BaseService<any>, private actions$: Actions) {}
 
   loadUserRequestEffect$ = createEffect(() => {
@@ -17,6 +17,7 @@ export class BookStoreEffects {
         // const subject = "Book";
         return this.baseService.getUser().pipe(
           map((user) => {
+            console.log("data send from BE",user)
             return bookActions.loadUserSuccessAction({user})
           }),
           catchError((error: any) => {

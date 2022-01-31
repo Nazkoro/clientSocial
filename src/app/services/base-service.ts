@@ -65,7 +65,13 @@ export class BaseService<T> {
       headers: {
         'Access-Control-Allow-Origin': '*'
       }
-    });
+    }).pipe(
+      tap(
+        (likes) =>{
+          console.log("likes",likes)
+        }
+      )
+    );
   }
   followOnUser(model: any): Observable<any> {
     return this.http.put<any>(`${environment.url}/api/user/follow`, model);

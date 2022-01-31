@@ -459,6 +459,21 @@
                   </div>
                 </div>
                 <div class="row">
+                <div class="col-md-5 col-sm-5">
+                  <div class="tools">
+                    <ul class="publishing-tools list-inline">
+
+                      <input
+                        formControlName="file"
+                        id="file"
+                        type="file"
+                        class="form-control"
+                        (change)="onFileChange($event)">
+                    </ul>
+                  </div>
+                </div>
+                  </div>
+                <div class="row">
                   <div class="form-group col-xs-12">
                     <label for="my-info">About me</label>
                     <textarea id="my-info" name="information" class="form-control" placeholder="Some texts about me" rows="4" cols="400" formControlName="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur</textarea>

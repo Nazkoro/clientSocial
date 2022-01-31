@@ -55,11 +55,23 @@ export const PostReducer = createReducer(
     posts: [post, ...state.posts],
   })),
 
-  on(PostLiked, (state, {likes}) => {
-  console.log("salam popalam", likes)
-    const currentPost = state.posts.find(x=> x._id === likes._id)
+  on(PostLiked, (state, {post}) => {
+  console.log("`1salam popalam", post)
+    // const currentPost = state.posts.find(x=> x._id === post._id)
+    const index = state.posts.findIndex(x=> x._id === post._id)
+    console.log("state.posts",state.posts)
+    const leftArr = state.posts.slice(0, index)
+    const rightArr = state.posts.slice(index + 1,  state.posts.length)
+    const updpost = leftArr.concat(post).concat(rightArr)
+    console.log("TOPupdpost",updpost);
+
+
+    // console.log("`2currentPost",currentPost)
     // isLiked? likes.count + 1 : likes.count
-   return currentPost.likes = likes
+    // currentPost.likes = post.likes;
+
+
+  return {...state, posts : updpost};
 //     return {
 //     ...state,
 //       currentPost.likes: ,

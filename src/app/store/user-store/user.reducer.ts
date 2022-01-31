@@ -24,7 +24,7 @@ export const initialState: UserState =
     isLoading: false,
     error: null
   };
-export const bookReducer = createReducer(
+export const userReducer = createReducer(
   initialState,
   on(BookActionTypes.loadUserRequestAction, (state) => ({
     ...state,

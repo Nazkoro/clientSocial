@@ -12,6 +12,7 @@ import {
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {BaseService} from '../../../app/services/base-service'
 import {of} from 'rxjs';
+import {Store} from "@ngrx/store";
 
 
 @Injectable()
@@ -56,7 +57,11 @@ export class PostsStoreEffects {
       ofType(putLikePost),
       switchMap(({likeAndPostId}) => this.baseService.updatelike(likeAndPostId)
         .pipe(
-          map((likes) => PostLiked({likes})),
+          map((post) => {
+            console.log("mmmmmmAp",post)
+            return PostLiked({post})
+          }
+          ),
           catchError(
             error => of(PostsFailed({
               serverError: error.message
@@ -69,6 +74,7 @@ export class PostsStoreEffects {
   constructor(
     private actions$: Actions,
     // private adminAuthService: AdminAuthService,
-    private baseService: BaseService<any>
+    private baseService: BaseService<any>,
+    private store: Store
   ) { }
 }

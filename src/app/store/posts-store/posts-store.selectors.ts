@@ -34,6 +34,16 @@ export const updLikePost = createSelector(
    state => state.posts
 );
 
+// export const getUpdatedPost = (id) => createSelector(getPosts, (allPosts) => {
+//   if (allPosts) {
+//     return allPosts.find(post => {
+//       return post._id === id;
+//     });
+//   } else {
+//     return {};
+//   }
+// });
+
 // export const updLikePost = createSelector(
 //   getFeature,
 //   // state => state.posts
