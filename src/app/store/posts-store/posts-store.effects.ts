@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
+  addComentInPost, addedComentInPost,
   createPosts,
   getPosts,
   PostCreated,
@@ -71,9 +72,27 @@ export class PostsStoreEffects {
     );
   });
 
+  addCommentPost$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(addComentInPost),
+      switchMap(({objComment}) => this.baseService.createComment(objComment)
+        .pipe(
+          map((post) => {
+              console.log("mmmmmmAp",post)
+              return addedComentInPost({post})
+            }
+          ),
+          catchError(
+            error => of(PostsFailed({
+              serverError: error.message
+            }))
+          )
+        ))
+    );
+  });
+
   constructor(
     private actions$: Actions,
-    // private adminAuthService: AdminAuthService,
     private baseService: BaseService<any>,
     private store: Store
   ) { }

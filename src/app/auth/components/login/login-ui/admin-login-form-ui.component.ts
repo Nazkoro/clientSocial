@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from "../../../auth.service";
 
 @Component({
   selector: 'app-admin-login-form-ui',
@@ -14,7 +15,7 @@ export class AdminLoginFormUiComponent implements OnInit {
   @Input() disabled: boolean;
   @Output() login = new EventEmitter();
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -30,5 +31,21 @@ export class AdminLoginFormUiComponent implements OnInit {
   onSubmit() {
     this.login.emit(this.formGroup.value);
   }
+
+  recoverPassword(){
+    const email = prompt("Введите email")
+    console.log(email)
+    const emailObj = {
+      email :email
+    }
+    this.authService.postEmail(emailObj).subscribe(
+      res => {
+        console.log(111,res)
+      },
+      error => console.log(error)
+    );
+
+  }
+
 
 }

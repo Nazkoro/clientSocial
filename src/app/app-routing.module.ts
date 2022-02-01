@@ -1,15 +1,12 @@
-
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule, ActivatedRoute} from '@angular/router';
 import {NotfoundComponent} from '../shared/notfound.component';
 import {AppComponent} from './app.component';
 import {AuthRoutingModule} from './auth/auth-routing.module';
 import {UserComponent} from "./components/user/user/user.component";
-// import {ProfileRoutingModule} from '../profile/profile-routing.module';
 import { AboutGuard }   from './about.guard';
 import {HomepagesComponent} from "./pages/homepages/homepages.component";
 import {RecoverPasswordComponent} from "./auth/components/recover-password/recover-password.component";
-import {Subscription} from "rxjs";
 import {EditBasicInfoComponent} from "./components/edit-basic-info/edit-basic-info/edit-basic-info.component";
 import {TimelineComponent} from "./components/timeline/timeline/timeline.component";
 import {TimelineAboutComponent} from "./components/timeline-about/timeline-about/timeline-about.component";
@@ -71,16 +68,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  //
-  // token: any;
-  //
-  // private querySubscription: Subscription;
-  // constructor(private route: ActivatedRoute){
-  //
-  //   this.querySubscription = route.queryParams.subscribe(
-  //     (queryParam: any) => {
-  //       this.token = queryParam['token'];
-  //     }
-  //   );
-  // }
+
 }

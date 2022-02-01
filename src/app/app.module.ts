@@ -40,6 +40,8 @@ import {PostsStoreModule} from "./store/posts-store/posts-store.module";
 import { LikeComponent } from './components/posts/like/like.component';
 import { PostComponent } from './components/posts/post/post.component';
 import {UserStoreModule} from "./store/user-store/user-store.module";
+import { TimelineHeaderComponent } from './components/timeline-header/timeline-header/timeline-header.component';
+import { TimelineRightmenuComponent } from './components/timeline-rightmenu/timeline-rightmenu/timeline-rightmenu.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import {UserStoreModule} from "./store/user-store/user-store.module";
     MyNewsfeedComponent,
     MypostComponent,
     LikeComponent,
-    PostComponent
+    PostComponent,
+    TimelineHeaderComponent,
+    TimelineRightmenuComponent
   ],
   imports: [
     BrowserModule,

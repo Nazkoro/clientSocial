@@ -2,14 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
 import {BaseService} from '../../../services/base-service';
 import {Router} from '@angular/router';
-import {AuthService} from "../../../auth/auth.service";
-import {HttpClient} from "@angular/common/http";
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import {select, Store} from "@ngrx/store";
-import {login} from "../../../store/admin-auth-store/store/admin-auth.actions";
 import * as postsStore from '../../../store/posts-store/posts-store.selectors';
 import {createPosts, getPosts, putLikePost} from "../../../store/posts-store/posts-store.actions";
-import {updLikePost} from "../../../store/posts-store/posts-store.selectors";
 
 @Component({
   selector: 'app-posts',
@@ -31,7 +27,6 @@ export class PostsComponent implements OnInit {
   loaded$: Observable<boolean> = this.store$.pipe(select(postsStore.getLoaded));
   posts$: Observable<any> = this.store$.pipe(select(postsStore.getPosts));
   serverError$: Observable<string> = this.store$.pipe(select(postsStore.getServerError));
-  // post$: Observable<any> = this.store$.pipe(select(postsStore.updLikePost))
 
   serverError = '';
 
@@ -42,9 +37,6 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.store$.dispatch(getPosts());
   }
-  // onUpdateLike(peyLoad: {likeFlag: boolean }) {
-  //   this.store$.dispatch(putLikePost({peyLoad}));
-  // }
 
   // private getPosts(): void {
   //   this.subscription.add(
@@ -62,17 +54,6 @@ export class PostsComponent implements OnInit {
     }
   }
 
-  // likePost( post ){
-  //   this.store$.dispatch(putLikePost({post}));
-  //   // this.store$.pipe(select(postsStore.updLikePost))
-  //   //   .subscribe(posts => console.log(posts.likes?.length || 0))
-  //
-  //   // this.baseService.updatelike(post).subscribe((data:any) => {
-  //   //   console.log('return data',data)
-  //   //   post.likes = data.likes
-  //   // });
-  // }
-
   submit() {
     this.postObj = {
       desc: this.myForm.value.post,
@@ -83,7 +64,6 @@ export class PostsComponent implements OnInit {
       formData.append('desc',  this.postObj.desc );
       this.postObj.img = this.myForm.value.fileSource.name
       this.store$.dispatch(createPosts({formData}))
-        //this.store$.dispatch(getPosts());
     }
     this.myForm.reset()
   }

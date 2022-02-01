@@ -1,13 +1,12 @@
 <div class="col-md-2 static" *ngIf="users">
   <div class="suggestions" id="sticky-sidebar" >
-    <h4 class="grey">Who to Follow</h4>
+    <h4 class="grey">all users</h4>
     <div *ngFor="let user of users">
       <div class="follow-user" >
         <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left" />
         <div>
           <h5><a href="timeline.html">{{user.username}}</a></h5>
           <button (click)="addFriend(user._id)" class=" btn-success">follow</button>
-<!--          <a href="#" class="text-green">Add friend</a>-->
         </div>
       </div>
     </div>

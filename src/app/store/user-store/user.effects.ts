@@ -4,7 +4,6 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {BaseService} from "../../services/base-service";
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {of as observableOf} from 'rxjs';
-import {loadUserFailureAction, loadUserRequestAction, loadUserSuccessAction} from "./user.actions";
 
 @Injectable()
 export class userStoreEffects {

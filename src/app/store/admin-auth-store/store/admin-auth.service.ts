@@ -37,7 +37,7 @@ export class AdminAuthService {
       tap(
         (user) =>{
           localStorage.setItem('token', user.accessToken);
-          console.log(user)
+          this.router.navigate(['homepage'])
         }
       )
     );

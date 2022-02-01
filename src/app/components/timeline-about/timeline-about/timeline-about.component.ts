@@ -13,18 +13,11 @@ import {login} from "../../../store/admin-auth-store/store/admin-auth.actions";
 })
 export class TimelineAboutComponent implements OnInit {
   user$: Observable<any> = this.store$.pipe(select(userStore.getSelectedUser));
-  // (select(getSelectedUser))
-// .subscribe(user => console.log(user));
-  private userInfo: any;
+
   constructor(private store$: Store) { }
 
   ngOnInit(): void {
     this.store$.dispatch(loadUserRequestAction());
-    // this.user$.subscribe((user) => {
-    //   console.log(user)
-    //   this.userInfo = user
-    // })
-
 
   }
 

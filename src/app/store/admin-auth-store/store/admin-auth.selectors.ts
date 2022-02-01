@@ -5,7 +5,6 @@ const getFeature = createFeatureSelector<AdminAuthState>(ADMIN_AUTH_FEATURE_NAME
 
 export const getLoading = createSelector(
    getFeature,
-  // (state) => state.auth,
     state => state.loading
 );
 

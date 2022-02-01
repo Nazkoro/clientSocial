@@ -27,5 +27,6 @@ export class AdminLoginBlockComponent implements OnInit {
   onLogin(loginPayload: {email: string, password: string}) {
     this.store$.dispatch(login(loginPayload));
   }
-  }
+
+}
 

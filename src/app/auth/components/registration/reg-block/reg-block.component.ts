@@ -20,9 +20,13 @@ export class AdminRegistrationBlockComponent implements OnInit {
   constructor(private store$: Store) { }
 
   ngOnInit(): void {
+    // subscribe(
+    //   res =>
+    //     this.router.navigate(['homepage']),
   }
 
   onRegistr(loginPayload: {username: string, email: string, password: string}) {
     this.store$.dispatch(registr(loginPayload));
+
   }
 }

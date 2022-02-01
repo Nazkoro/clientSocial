@@ -5,7 +5,6 @@ const getFeature = createFeatureSelector<PostsState>(POST_FEATURE_NAME);
 
 export const getLoading = createSelector(
   getFeature,
-  // (state) => state.auth,
   state => state.loading
 );
 
@@ -34,18 +33,8 @@ export const updLikePost = createSelector(
    state => state.posts
 );
 
-// export const getUpdatedPost = (id) => createSelector(getPosts, (allPosts) => {
-//   if (allPosts) {
-//     return allPosts.find(post => {
-//       return post._id === id;
-//     });
-//   } else {
-//     return {};
-//   }
-// });
+export const addComentPost = createSelector(
+  getFeature,
+  state => state.posts
+);
 
-// export const updLikePost = createSelector(
-//   getFeature,
-//   // state => state.posts
-//   state => state.selectedPost
-// );

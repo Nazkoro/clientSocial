@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BaseService} from '../../../services/base-service';
+import {addComentInPost, putLikePost} from "../../../store/posts-store/posts-store.actions";
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-comment',
@@ -10,28 +12,25 @@ export class CommentComponent implements OnInit {
    @Input() currentPost: any ;
    text: any;
 
-
-  constructor(private baseService: BaseService<any>) { }
+  constructor(private baseService: BaseService<any>,private store$: Store) { }
 
   ngOnInit(): void {
 
-
   }
   submit(){
-    console.log(this.text);
-    console.log("111",this.currentPost)
+
     const objComment = {
-      postId: this.currentPost._id,
-      text: this.text
+      post: {
+        ...this.currentPost
+      },
+      comment: {
+        postId: this.currentPost._id,
+        text: this.text,
+      }
   }
-    this.baseService.createComment(objComment).subscribe((data:any) => {
-      console.log('return data',data)
+    this.store$.dispatch(addComentInPost({objComment}));
 
-    });
     this.text = ""
-
   }
-
-
 
 }

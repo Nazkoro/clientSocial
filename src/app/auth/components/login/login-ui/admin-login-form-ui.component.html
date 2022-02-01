@@ -36,5 +36,6 @@
   <button class="btn" type="submit" [disabled]="disabled || formGroup.invalid || !!formError">Войти в IT</button>
   <span *ngIf="formError">{{formError}}</span>
 </form>
+<button class="btn-recover" (click)="recoverPassword()">Забыли пароль?</button>
 <!--<button class="btn-recover" (click)="recoverPassword()">Забыли пароль?</button>-->
 

@@ -33,12 +33,15 @@ export const PostLiked = createAction(
   '[get] Post liked',
   props<{post: any}>()
 );
-// export const putLikePost = createAction(
-//   '[put] Like ',
-//   props<{post}>()
-// );
-//
-// export const PostLiked = createAction(
-//   '[get] Post liked',
-//   props<{post: any}>()
-// );
+
+
+export const addComentInPost = createAction(
+  '[post] Comment ',
+  props<{objComment}>()
+);
+
+export const addedComentInPost = createAction(
+  '[get] Comment',
+  props<{post: any}>()
+);
+

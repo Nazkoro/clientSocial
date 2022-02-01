@@ -24,7 +24,6 @@ export class MypostComponent implements OnInit {
   ngOnInit() {
     this.baseService.getMyPosts().subscribe((data:any) => {
       this.posts = data
-      console.log(this.posts)
     });
 
   }
@@ -39,7 +38,6 @@ export class MypostComponent implements OnInit {
 
   increment( post ){
     this.baseService.updatelike(post).subscribe((data:any) => {
-      console.log('return data',data)
       post.likes = data.likes
     });
   }
