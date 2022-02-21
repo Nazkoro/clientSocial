@@ -45,3 +45,13 @@ export const addedComentInPost = createAction(
   props<{post: any}>()
 );
 
+export const deletePosts = createAction(
+  '[delete] Post ',
+  props<{post}>()
+);
+
+export const PostDeleted = createAction(
+  '[get] Post deleted',
+  props<{post: any}>()
+);
+

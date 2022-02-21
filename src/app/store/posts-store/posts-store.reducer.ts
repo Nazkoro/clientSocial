@@ -6,7 +6,7 @@ import {
   PostCreated,
   putLikePost,
   PostLiked,
-  addedComentInPost
+  addedComentInPost, deletePosts, PostDeleted
 } from './posts-store.actions';
 
 export const POST_FEATURE_NAME = 'post';
@@ -86,5 +86,21 @@ export const PostReducer = createReducer(
     loaded: true,
     loading: false,
     serverError
-  }))
+  })),
+
+  on(deletePosts, (state, {post}) => ({
+    ...state,
+    posts: [...state.posts],
+  })),
+
+  on(PostDeleted, (state, {post}) => {
+    console.log(post)
+    const index = state.posts.findIndex(x=> x._id === post._id)
+    const leftArr = state.posts.slice(0, index)
+    const rightArr = state.posts.slice(index + 1,  state.posts.length)
+    const updpost = leftArr.concat(rightArr)
+    return {...state, posts : updpost};
+  }),
+
+
 );

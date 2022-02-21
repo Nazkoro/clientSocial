@@ -5,7 +5,7 @@ import {AuthService} from "../../../auth.service";
 @Component({
   selector: 'app-admin-login-form-ui',
   templateUrl: './admin-login-form-ui.component.html',
-  styleUrls: ['./admin-login-form-ui.component.css']
+  styleUrls: ['./admin-login-form-ui.component.css', '../../../../../../css/style.css', '../../../../../../css/bootstrap.min.css','../../../../../../css/ionicons.min.css','../../../../../../css/font-awesome.min.css']
 })
 export class AdminLoginFormUiComponent implements OnInit {
 

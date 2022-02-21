@@ -4,7 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 @Component({
   selector: 'app-reg-ui',
   templateUrl: './reg-ui.component.html',
-  styleUrls: ['./reg-ui.component.css']
+  styleUrls: ['./reg-ui.component.css',  '../../../../../../css/style.css', '../../../../../../css/bootstrap.min.css','../../../../../../css/ionicons.min.css','../../../../../../css/font-awesome.min.css']
 })
 export class AdminRegistrationFormUiComponent implements OnInit {
 

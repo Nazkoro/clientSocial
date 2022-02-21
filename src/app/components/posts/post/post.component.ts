@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, OnDestroy} from '@angular/core';
-import {putLikePost} from "../../../store/posts-store/posts-store.actions";
+import {deletePosts, putLikePost} from "../../../store/posts-store/posts-store.actions";
 import {Store, select} from "@ngrx/store";
 
 
@@ -16,6 +16,11 @@ export class PostComponent implements OnInit, OnDestroy {
   constructor(private store$: Store) { }
 
   ngOnInit(): void {
+  }
+
+  removePost(post){
+    console.log(post)
+    this.store$.dispatch(deletePosts({post}));
   }
 
   onUpdateLike(likeAndPostId) {

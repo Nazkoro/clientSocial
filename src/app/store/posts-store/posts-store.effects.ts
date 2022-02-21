@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
   addComentInPost, addedComentInPost,
-  createPosts,
+  createPosts, deletePosts,
   getPosts,
-  PostCreated,
+  PostCreated, PostDeleted,
   PostLiked,
   PostsFailed,
   PostsSuccess,
@@ -82,6 +82,21 @@ export class PostsStoreEffects {
               return addedComentInPost({post})
             }
           ),
+          catchError(
+            error => of(PostsFailed({
+              serverError: error.message
+            }))
+          )
+        ))
+    );
+  });
+
+  deletePosts$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(deletePosts),
+      switchMap(({post}) => this.baseService.deletePosts(post)
+        .pipe(
+          map((post) => PostDeleted({post})),
           catchError(
             error => of(PostsFailed({
               serverError: error.message

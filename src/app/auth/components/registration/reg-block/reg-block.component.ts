@@ -7,7 +7,7 @@ import {registr} from '../../../../store/admin-auth-store/store/admin-auth.actio
 @Component({
   selector: 'app-reg-block',
   templateUrl: './reg-block.component.html',
-  styleUrls: ['./reg-block.component.css']
+  styleUrls: ['./reg-block.component.css',  '../../../../../../css/style.css', '../../../../../../css/bootstrap.min.css','../../../../../../css/ionicons.min.css','../../../../../../css/font-awesome.min.css']
 })
 export class AdminRegistrationBlockComponent implements OnInit {
 

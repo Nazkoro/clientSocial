@@ -1,57 +1,57 @@
 
-.login-form {
-  display: grid;
-  grid-template-areas: 'login registration btn';
+/*.login-form {*/
+/*  display: grid;*/
+/*  grid-template-areas: 'login registration btn';*/
 
-}
+/*}*/
 
-.login {
-  grid-area: login;
-  background-color: #dc4734;
-  padding: 15px 30px;
-}
+/*.login {*/
+/*  grid-area: login;*/
+/*  background-color: #dc4734;*/
+/*  padding: 15px 30px;*/
+/*}*/
 
-.registration {
-  grid-area: registration;
-  background-color: #dc4734;
-  padding: 15px 30px;
-}
+/*.registration {*/
+/*  grid-area: registration;*/
+/*  background-color: #dc4734;*/
+/*  padding: 15px 30px;*/
+/*}*/
 
-.btn{
-  grid-area: btn;
-  background-color: #b8b8b8;
-  padding: 15px 30px;
-  cursor: pointer;
-}
+/*.btn{*/
+/*  grid-area: btn;*/
+/*  background-color: #b8b8b8;*/
+/*  padding: 15px 30px;*/
+/*  cursor: pointer;*/
+/*}*/
 
-.single-field {
-  width: 100%;
-  border: none;
-  background-color: transparent;
-  border-bottom: 1px solid #ddd;
-  padding: 5px 10px;
-  color: #fff;
-}
+/*.single-field {*/
+/*  width: 100%;*/
+/*  border: none;*/
+/*  background-color: transparent;*/
+/*  border-bottom: 1px solid #ddd;*/
+/*  padding: 5px 10px;*/
+/*  color: #fff;*/
+/*}*/
 
-input:focus, textarea:focus {
-  outline: none;
-}
+/*input:focus, textarea:focus {*/
+/*  outline: none;*/
+/*}*/
 
-.field-error {
-  color: black;
-}
-.btn-recover{
+/*.field-error {*/
+/*  color: black;*/
+/*}*/
+/*.btn-recover{*/
 
-  margin: 10px 0;
-  display: block;
-  background-color: #dc6658;
-  border: 1px solid transparent;
-  color: #fff;
-  cursor: pointer;
+/*  margin: 10px 0;*/
+/*  display: block;*/
+/*  background-color: #dc6658;*/
+/*  border: 1px solid transparent;*/
+/*  color: #fff;*/
+/*  cursor: pointer;*/
 
 
-}
-.btn-recover:hover {
-  background-color: #dc6658;
+/*}*/
+/*.btn-recover:hover {*/
+/*  background-color: #dc6658;*/
 
-}
+/*}*/

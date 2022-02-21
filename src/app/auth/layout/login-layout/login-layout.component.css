@@ -1,38 +1,38 @@
-.container {
-  display: grid;
-  justify-items: stretch;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 70px 100%;
-  grid-template-areas:
-    "header login"
-    "img registration";
-}
+/*.container {*/
+/*  display: grid;*/
+/*  justify-items: stretch;*/
+/*  grid-template-columns: 1fr 1fr;*/
+/*  grid-template-rows: 70px 100%;*/
+/*  grid-template-areas:*/
+/*    "header login"*/
+/*    "img registration";*/
+/*}*/
 
-.header-area {
-  display: grid;
-  grid-area: header;
-  align-items: center;
-  justify-items: center;
-}
+/*.header-area {*/
+/*  display: grid;*/
+/*  grid-area: header;*/
+/*  align-items: center;*/
+/*  justify-items: center;*/
+/*}*/
 
-.login-area {
-  grid-area: login;
-  justify-items: stretch;
-}
+/*.login-area {*/
+/*  grid-area: login;*/
+/*  justify-items: stretch;*/
+/*}*/
 
-.img-area {
-  grid-area: img;
-  background-image: url("../../../../assets/img/angular-icon-1.svg");
-}
+/*.img-area {*/
+/*  grid-area: img;*/
+/*  background-image: url("../../../../assets/img/angular-icon-1.svg");*/
+/*}*/
 
-.registration-area {
-  margin-top: 0px;
-  grid-area: registration;
-}
+/*.registration-area {*/
+/*  margin-top: 0px;*/
+/*  grid-area: registration;*/
+/*}*/
 
-.brand {
-  color: #333333;
-  font-size: 16px;
-  font-weight: 500;
-  padding-left: 70px;
-}
+/*.brand {*/
+/*  color: #333333;*/
+/*  font-size: 16px;*/
+/*  font-weight: 500;*/
+/*  padding-left: 70px;*/
+/*}*/

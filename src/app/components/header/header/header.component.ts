@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   }
   logout(){
   localStorage.clear()
-    this.router.navigate(['']);
+    this.router.navigate(['login']);
     this.baseService.logoutUser({}).subscribe((data:any) => {
 
     });

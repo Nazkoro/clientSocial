@@ -19,7 +19,7 @@ import {MyNewsfeedComponent} from "./pages/my-newsfeed/my-newsfeed.component";
 
 const routes: Routes = [
   {
-    path: '', component: AppComponent,
+    path: 'login', component: AppComponent,
   },
   {
     path: 'user', component: UserComponent,

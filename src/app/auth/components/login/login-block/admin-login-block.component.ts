@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-admin-login-block',
   templateUrl: './admin-login-block.component.html',
-  styleUrls: ['./admin-login-block.component.css']
+  styleUrls: ['./admin-login-block.component.css', '../../../../../../css/style.css', '../../../../../../css/bootstrap.min.css','../../../../../../css/ionicons.min.css','../../../../../../css/font-awesome.min.css']
 })
 export class AdminLoginBlockComponent implements OnInit {
 

@@ -4,7 +4,7 @@ import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import * as userStore from "../../../store/user-store/user.selectors";
 import {loadUserRequestAction} from "../../../store/user-store/user.actions";
-import {login} from "../../../store/admin-auth-store/store/admin-auth.actions";
+
 
 @Component({
   selector: 'app-timeline-about',
@@ -17,6 +17,7 @@ export class TimelineAboutComponent implements OnInit {
   constructor(private store$: Store) { }
 
   ngOnInit(): void {
+    this.user$.subscribe(val => console.log(val))
     this.store$.dispatch(loadUserRequestAction());
 
   }

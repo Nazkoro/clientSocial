@@ -1,15 +1,73 @@
-<div class="container">
-  <div class="header-area">
-    <span class="brand">Social network for programmer</span>
-  </div>
-  <div class="login-area">
-<!--    <app-login></app-login>-->
-    <app-admin-login-block></app-admin-login-block>
-  </div>
-  <div class="img-area"></div>
-  <div class="registration-area area-margin">
-    |<app-reg-block></app-reg-block>
-<!--    <app-registration></app-registration>-->
+<!--<div class="container wrapper">-->
+<!--  <div class="header-area">-->
+<!--    <span class="brand">Social network for programmer</span>-->
+<!--  </div>-->
+<!--  <div class="login-area">-->
+<!--&lt;!&ndash;    <app-login></app-login>&ndash;&gt;-->
+<!--    <app-admin-login-block></app-admin-login-block>-->
+<!--  </div>-->
+<!--  <div class="img-area"></div>-->
+<!--  <div class="registration-area area-margin">-->
+<!--    |<app-reg-block></app-reg-block>-->
+<!--&lt;!&ndash;    <app-registration></app-registration>&ndash;&gt;-->
+<!--  </div>-->
+<!--</div>-->
+<!--<router-outlet></router-outlet>-->
+
+
+
+
+<div id="lp-register">
+  <div class="container wrapper">
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="intro-texts">
+          <h1 class="text-white">Make Cool Friends !!!</h1>
+          <p>Friend Finder is a social network template that can be used to connect people. The template offers Landing pages, News Feed, Image/Video Feed, Chat Box, Timeline and lot more. <br /> <br />Why are you waiting for? Buy it now.</p>
+          <button class="btn btn-primary">Learn More</button>
+        </div>
+      </div>
+      <div class="col-sm-6 col-sm-offset-1">
+        <div class="reg-form-container">
+
+          <!-- Register/Login Tabs-->
+          <div class="reg-options">
+            <ul class="nav nav-tabs">
+              <li routerLinkActive="active">  <a routerLink="/register" data-toggle="tab">Register</a></li>
+              <li routerLinkActive="active"><a routerLink="/login" data-toggle="tab">Login</a></li>
+            </ul><!--Tabs End-->
+          </div>
+
+          <!--Registration Form Contents-->
+            <div class="tab-content">
+              <div class="tab-pane active" id="register">
+            </div>
+            <div class="tab-pane" id="login">
+              <app-reg-block></app-reg-block>
+            </div>
+            <!--Login-->
+
+<!--            <app-admin-login-block></app-admin-login-block>-->
+              <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-6">
+
+        <!--Social Icons-->
+        <ul class="list-inline social-icons">
+          <li><a href="#"><i class="icon ion-social-facebook"></i></a></li>
+          <li><a href="#"><i class="icon ion-social-twitter"></i></a></li>
+          <li><a href="#"><i class="icon ion-social-googleplus"></i></a></li>
+          <li><a href="#"><i class="icon ion-social-pinterest"></i></a></li>
+          <li><a href="#"><i class="icon ion-social-linkedin"></i></a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
-<!--<router-outlet></router-outlet>-->
+
+
+
