@@ -17,9 +17,14 @@
             <div class="row" *ngIf="friends">
               <div class="col-md-6 col-sm-6" *ngFor="let friend of friends">
                 <div class="friend-card">
-                  <img src="http://placehold.it/1030x360" alt="profile-cover" class="img-responsive cover" />
+                  <img src="http://localhost:4000/images/1645539000731" alt="profile-cover" class="img-responsive cover" />
                   <div class="card-info">
-                    <img src="http://placehold.it/300x300" alt="user" class="profile-photo-lg" />
+                    <ng-container *ngIf="friend.coverPicture">
+                      <img src="http://localhost:4000/images/{{friend.coverPicture }}" alt="user" class="profile-photo-lg" />
+                    </ng-container>
+                    <ng-container *ngIf="!friend.coverPicture">
+                      <img src="https://www.blexar.com/avatar.png" alt="user" class="profile-photo-lg" />
+                    </ng-container>
                     <div class="friend-info">
                       <a routerLink="/#" class="pull-right text-green">followings</a>
                       <h5><a routerLink="/#" class="profile-link">{{friend.username}}</a></h5>

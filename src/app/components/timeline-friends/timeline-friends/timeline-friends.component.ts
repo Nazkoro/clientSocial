@@ -13,7 +13,7 @@ export class TimelineFriendsComponent implements OnInit {
 
   ngOnInit(): void {
     this.baseService.getMyFriends().subscribe((data:any) => {
-      console.log(data)
+      console.log("friends",data)
       this.friends = data
     });
   }

@@ -13,11 +13,13 @@ import {loadUserRequestAction} from "../../../store/user-store/user.actions";
 })
 export class TimelineAboutComponent implements OnInit {
   user$: Observable<any> = this.store$.pipe(select(userStore.getSelectedUser));
+  info: any;
 
   constructor(private store$: Store) { }
 
   ngOnInit(): void {
-    this.user$.subscribe(val => console.log(val))
+    console.log("render about")
+    this.user$.subscribe(val => this.info = val)
     this.store$.dispatch(loadUserRequestAction());
 
   }
