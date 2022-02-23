@@ -1,5 +1,11 @@
 <div class="profile-card" *ngIf="user">
-  <img src="http://placehold.it/300x300" alt="user" class="profile-photo" />
+<!--  <img src="http://placehold.it/300x300" alt="user" class="profile-photo" />-->
+  <ng-container  *ngIf="user.coverPicture">
+    <img src="http://localhost:4000/images/{{user.coverPicture}}" alt="user"  class="profile-photo"/>
+  </ng-container>
+  <ng-container *ngIf="!user.coverPicture">
+    <img src="https://www.blexar.com/avatar.png" alt="user" class="profile-photo" />
+  </ng-container>
   <h5><a href="timeline.html" class="text-white">{{user.username}}</a></h5>
   <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> {{user.followers?.length || 0}} followers</a>
 </div><!--profile card ends-->
