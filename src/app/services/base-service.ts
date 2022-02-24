@@ -5,6 +5,7 @@ import {Injectable} from '@angular/core';
 import {tap} from "rxjs/operators";
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -110,7 +111,10 @@ export class BaseService<T> {
       headers: {
         'Access-Control-Allow-Origin': '*'
       }
-    }).pipe(
+    }).
+    pipe(tap((data) => {
+        console.log(data)
+      }),
       retryWhen((errors) =>{
         return concat(
           errors.pipe(delay(500),

@@ -16,6 +16,7 @@ export class PostComponent implements OnInit, OnDestroy {
   constructor(private store$: Store) { }
 
   ngOnInit(): void {
+     // console.log(this.post)
   }
 
   removePost(post){
