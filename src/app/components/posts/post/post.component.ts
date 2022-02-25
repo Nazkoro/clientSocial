@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {deletePosts, putLikePost} from "../../../store/posts-store/posts-store.actions";
-import {Store, select} from "@ngrx/store";
+import {Store,} from "@ngrx/store";
 
 
 
@@ -11,12 +11,11 @@ import {Store, select} from "@ngrx/store";
 })
 export class PostComponent implements OnInit, OnDestroy {
  @Input() post: any
-  posts$:any
 
   constructor(private store$: Store) { }
 
   ngOnInit(): void {
-     // console.log(this.post)
+     console.log("POST COMPONENT", this.post)
   }
 
   removePost(post){

@@ -60,26 +60,19 @@ export const PostReducer = createReducer(
 
   on(PostCreated, (state, {post}) => ({
     ...state,
-    posts: [post, ...state.posts],
+    posts: [...post, ...state.posts],
   })),
 
   on(PostLiked, (state, {post}) => {
-    //НАДО КАК ТО КРЕПИТЬ КО ВСЕМ ПОСТАМ USERA ЧЕРЕЗ AGREGATE
-    // НО ПРИДЕТСЯ ДОФИГА ПЕРЕПИСЫВАТЬ
-    // ЛИБО ЧЕТ ДЕЛАТЬ С УСЛОВИЕМ ВЫВОДА КАРТИНОК ПОСТА
-    console.log("post", post);
-    console.log("state.posts", state.posts)
-    console.log("state.posts[0]._id", state.posts[0]._id)
-    console.log("post", post)
-    console.log(state.posts[0]._id === post._id);
+    console.log("postlIKED", post);
+    // console.log("state.posts", state.posts)
+    // console.log("state.posts[0]._id", state.posts[0]._id)
+    // console.log("post", post)
+    // console.log(state.posts[0]._id === post._id);
     const index = state.posts.findIndex(x=> x._id == post[0]._id)
-    console.log("index",index)
     const leftArr = state.posts.slice(0, index)
-    console.log("leftArr", leftArr)
     const rightArr = state.posts.slice(index + 1,  state.posts.length)
-    console.log("rightArr", rightArr)
     const updpost = leftArr.concat(post[0]).concat(rightArr)
-    console.log("updpost", updpost)
   return {...state, posts : updpost};
   }),
 
@@ -106,7 +99,7 @@ export const PostReducer = createReducer(
   })),
 
   on(PostDeleted, (state, {post}) => {
-    console.log(post)
+    console.log("DELETE", post)
     const index = state.posts.findIndex(x=> x._id === post._id)
     const leftArr = state.posts.slice(0, index)
     const rightArr = state.posts.slice(index + 1,  state.posts.length)

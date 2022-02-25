@@ -106,14 +106,12 @@ export class BaseService<T> {
     );
   }
   updatelike(model: any): Observable<any> {
-    console.log("baseService", model)
     return this.http.put<any>(`${environment.url}/api/posts/like`, model,{
       headers: {
         'Access-Control-Allow-Origin': '*'
       }
     }).
     pipe(tap((data) => {
-        console.log(data)
       }),
       retryWhen((errors) =>{
         return concat(

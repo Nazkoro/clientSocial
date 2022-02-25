@@ -1,6 +1,8 @@
-<ng-container *ngIf="post?.img">
+
+<div *ngIf="post?.img">
   <img src="http://localhost:4000/images/{{post.img}}" alt="" class="img-responsive post-image" style="width: 100%"/>
-</ng-container>
+</div>
+
 <div class="post-container">
 <!--  <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />-->
   <ng-container *ngIf="!post?.avtorPost[0]?.coverPicture  ">
@@ -33,4 +35,4 @@
     <div class="line-divider"></div>
   </div>
 </div>
-<!--src="http://localhost:4000/images/{{infoUsers.coverPicture}}"-->
+

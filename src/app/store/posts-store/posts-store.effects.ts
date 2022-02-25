@@ -59,7 +59,6 @@ export class PostsStoreEffects {
       switchMap(({likeAndPostId}) => this.baseService.updatelike(likeAndPostId)
         .pipe(
           map((post) => {
-            console.log("mmmmmmAp",post)
             return PostLiked({post})
           }
           ),
