@@ -42,6 +42,8 @@ import { PostComponent } from './components/posts/post/post.component';
 import {UserStoreModule} from "./store/user-store/user-store.module";
 import { TimelineHeaderComponent } from './components/timeline-header/timeline-header/timeline-header.component';
 import { TimelineRightmenuComponent } from './components/timeline-rightmenu/timeline-rightmenu/timeline-rightmenu.component';
+import { ConversationsComponent } from './components/chat/conversations/conversations.component';
+import { MessagesComponent } from './components/chat/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { TimelineRightmenuComponent } from './components/timeline-rightmenu/time
     LikeComponent,
     PostComponent,
     TimelineHeaderComponent,
-    TimelineRightmenuComponent
+    TimelineRightmenuComponent,
+    ConversationsComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

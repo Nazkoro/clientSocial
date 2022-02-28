@@ -1,27 +1,77 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {BehaviorSubject, concat, delay, Observable, retryWhen, take, throwError} from 'rxjs';
 import { io } from "socket.io-client";
+import {environment} from "../../environments/environment";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
   public  message$: BehaviorSubject<string> = new BehaviorSubject("")
-  constructor() { }
+  constructor(protected http: HttpClient) { }
 
-  socket = io('http://localhost:4000');
-
-  public sendMessage(message) {
-    this.socket.emit('message', message);
+  getAllConversation(id): Observable<[any]> {
+    console.log("id",typeof id)
+    return this.http.get<[any]>(`${environment.url}/api/conversation/${id}`).pipe(
+      retryWhen((errors) =>{
+        return concat(
+          errors.pipe(delay(500),
+            take(3)),
+          throwError(new Error('Retry limit exceeded'))
+        )
+      })
+    );
+  }
+  getAllMessageBetweenUser(id): Observable<[any]> {
+    console.log("id",typeof id)
+    return this.http.get<[any]>(`${environment.url}/api/message/${id}`).pipe(
+      retryWhen((errors) =>{
+        return concat(
+          errors.pipe(delay(500),
+            take(3)),
+          throwError(new Error('Retry limit exceeded'))
+        )
+      })
+    );
   }
 
-  public getNewMessage = () => {
-    this.socket.on('message', (message) =>{
-      this.message$.next(message);
-    });
+  getConversationBetweenTwoUsers(): Observable<[any]> {
+    return this.http.get<[any]>(`${environment.url}/api/conversation/find/:firstUserId/:secondUserId`).pipe(
+      retryWhen((errors) =>{
+        return concat(
+          errors.pipe(delay(500),
+            take(3)),
+          throwError(new Error('Retry limit exceeded'))
+        )
+      })
+    );
+  }
+  addMessage(model: any): Observable<any> {
+    return this.http.post<any>(`${environment.url}/api/message`, model).pipe(
+      retryWhen((errors) =>{
+        return concat(
+          errors.pipe(delay(500),
+            take(3)),
+          throwError(new Error('Retry limit exceeded'))
+        )
+      })
+    );
+  }
 
-    return this.message$.asObservable();
-  };
+  // socket = io('http://localhost:4000');
+  //
+  // public sendMessage(message) {
+  //   this.socket.emit('message', message);
+  // }
+  //
+  // public getNewMessage = () => {
+  //   this.socket.on('message', (message) =>{
+  //     this.message$.next(message);
+  //   });
+  //
+  //   return this.message$.asObservable();
+  // };
 
 
 }

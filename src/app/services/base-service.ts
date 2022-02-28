@@ -37,6 +37,17 @@ export class BaseService<T> {
       })
     );
   }
+  getChatUser(userId): Observable<[any]> {
+    return this.http.get<[any]>(`${environment.url}/api/user/chatUser?userId=${userId}`).pipe(
+      retryWhen((errors) =>{
+        return concat(
+          errors.pipe(delay(500),
+            take(3)),
+          throwError(new Error('Retry limit exceeded'))
+        )
+      })
+    );
+  }
   getOnlineUsers(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/user/online`).pipe(
       retryWhen((errors) =>{
