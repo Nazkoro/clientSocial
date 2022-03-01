@@ -12,7 +12,6 @@ export class ChatService {
   constructor(protected http: HttpClient) { }
 
   getAllConversation(id): Observable<[any]> {
-    console.log("id",typeof id)
     return this.http.get<[any]>(`${environment.url}/api/conversation/${id}`).pipe(
       retryWhen((errors) =>{
         return concat(
@@ -24,7 +23,6 @@ export class ChatService {
     );
   }
   getAllMessageBetweenUser(id): Observable<[any]> {
-    console.log("id",typeof id)
     return this.http.get<[any]>(`${environment.url}/api/message/${id}`).pipe(
       retryWhen((errors) =>{
         return concat(
@@ -59,19 +57,19 @@ export class ChatService {
     );
   }
 
-  // socket = io('http://localhost:4000');
-  //
-  // public sendMessage(message) {
-  //   this.socket.emit('message', message);
-  // }
-  //
-  // public getNewMessage = () => {
-  //   this.socket.on('message', (message) =>{
-  //     this.message$.next(message);
-  //   });
-  //
-  //   return this.message$.asObservable();
-  // };
+  socket = io('http://localhost:8900');
+
+  public sendMessage(message) {
+    this.socket.emit('message', message);
+  }
+
+  public getNewMessage = () => {
+    this.socket.on('message', (message) =>{
+      this.message$.next(message);
+    });
+
+    return this.message$.asObservable();
+  };
 
 
 }

@@ -20,11 +20,15 @@
               <div class="col-md-7">
                   <div class="tab-content scrollbar-wrapper wrapper scrollbar-outer">
                     <div class="tab-pane active" id="contact-1">
-                      <div class="chat-body">
-                        <ul class="chat-message">
-              <ng-container *ngFor="let message of listOfMessages">
-                <app-messages [message] = "message" [own] = "message.sender === user._id"></app-messages>
-              </ng-container>
+                      <div class="chat-body" >
+                        <ul class="chat-message"  #myDiv>
+                          <div >
+                            <ng-container *ngFor="let message of listOfMessages">
+
+                                <app-messages [message] = "message" [own] = "message.sender === user._id" ></app-messages>
+
+                            </ng-container>
+                          </div>
                         </ul>
                       </div>
                     </div>
@@ -32,7 +36,7 @@
               </div>
             </ng-container>
             <ng-container *ngIf="!currentOpenChat">
-              <h3>start chating with ...</h3>
+              <h3 >start chating with ...</h3>
             </ng-container>
 
 <!--            <div class="col-md-5">-->
