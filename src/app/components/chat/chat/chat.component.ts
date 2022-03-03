@@ -1,8 +1,9 @@
-import {AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ChatService} from "../../../services/chat.service";
 import {BaseService} from "../../../services/base-service";
 import {io} from "socket.io-client";
 import {BehaviorSubject} from "rxjs";
+import {TestSubjectService} from "../../../services/TestSubjectService";
 
 
 @Component({
@@ -10,7 +11,7 @@ import {BehaviorSubject} from "rxjs";
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css','../../../../../css/style.css', '../../../../../css/bootstrap.min.css','../../../../../css/ionicons.min.css','../../../../../css/font-awesome.min.css']
 })
-export class ChatComponent implements OnInit , AfterViewInit, AfterViewChecked {
+export class ChatComponent implements OnInit{
   // newMessage: string;
   newMessage: any;
   messageList: string[] = [];
@@ -18,25 +19,28 @@ export class ChatComponent implements OnInit , AfterViewInit, AfterViewChecked {
   onlineUsers:any[];
   arrivalMessage: any;
   user: any;
-  conversations: any;
+  conversations: any[];
   currentOpenChat: any;
-  listOfMessages: any;
+  listOfMessages: any[];
   sendText: any;
+  username: any;
+  foundUser: any;
 
   socket = io('http://localhost:8900');
-  // public  message$: BehaviorSubject<string> = new BehaviorSubject("")
+  public  message$: BehaviorSubject<string> = new BehaviorSubject(null);
 
   @ViewChild("myDiv") divView: ElementRef;
-  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
-  constructor(private chatService: ChatService, private baseService: BaseService<any>) { }
-
+  constructor(private chatService: ChatService, private baseService: BaseService<any>,private testSubjectService: TestSubjectService) { }
+ // отправлять пост запрос для создание чата между выбраными пользователями
   ngOnInit(): void {
     this.baseService.getUser().subscribe((data:any) => {
       this.user = data
+      this.addUserAndGetUsers(data)
+      console.log(this.user)
       this.chatService.getAllConversation(data._id).subscribe((data: any) => {
         this.conversations = data
-        this.addUserAndGetUsers(data)
+
       })
     });
 
@@ -48,7 +52,12 @@ export class ChatComponent implements OnInit , AfterViewInit, AfterViewChecked {
         text: message.text,
         createdAt: Date.now(),
       }
-      console.log(this.arrivalMessage)
+      this.listOfMessages = [...this.listOfMessages, this.arrivalMessage]
+      // let self = this;
+      console.log("line 56 currentOpenChat", this.currentOpenChat._id);
+      this.testSubjectService.sendMessage({...this.arrivalMessage,chatId: this.currentOpenChat._id});
+      // console.log("ACTUAL MESSAGE", this.arrivalMessage)
+      // this.message$.next(this.arrivalMessage)
         // this.listOfMessages = [...this.listOfMessages, message];
 
       // this.messageList.push(message);
@@ -56,17 +65,15 @@ export class ChatComponent implements OnInit , AfterViewInit, AfterViewChecked {
     });
 
   }
-
-  // ngOnChanges(changes: SimpleChanges) {
-  //   console.log(changes)
-  // }
-
-  ngAfterViewInit(){
-    // this.arrivalMessage &&
-    // this.currentOpenChat?.members.includes(this.arrivalMessage.sender) &&
-    // (this.listOfMessages = [...this.listOfMessages, this.arrivalMessage]);
-    // setMessages((prev) => [...prev, this.arrivalMessage]);
+  findUser(){
+    console.log(this.username)
+    this.chatService.getUserByUsername(this.username).subscribe((data: any) =>{
+      console.log("RESULT FIND USER IN BD",data);
+      this.foundUser = data;
+    })
+    this.username = '';
   }
+
 
   addArrivalMessage(){
       this.arrivalMessage &&
@@ -74,13 +81,10 @@ export class ChatComponent implements OnInit , AfterViewInit, AfterViewChecked {
       (this.listOfMessages = [...this.listOfMessages, this.arrivalMessage]);
   }
 
-  ngAfterViewChecked() {
-  }
-
-  public sendMessage() {
-    this.socket.emit('message', this.newMessage);
-    this.newMessage = '';
-  }
+  // public sendMessage() {
+  //   this.socket.emit('message', this.newMessage);
+  //   this.newMessage = '';
+  // }
 
   // public getNewMessage = () => {
   //   this.socket.on('message', (message) =>{
@@ -92,17 +96,32 @@ export class ChatComponent implements OnInit , AfterViewInit, AfterViewChecked {
 
   openConversation(conversation){
     this.currentOpenChat = conversation
+    console.log("Беседа ", conversation)
+    this.chatService.getInfoBetweenTwoUsers(conversation.members[0], conversation.members[1]).subscribe((data) => {
+      this.testSubjectService.sendMessage(data);
+      console.log(data)
+    })
     this.chatService.getAllMessageBetweenUser(conversation._id).subscribe((data: any) => {
       this.listOfMessages = data;
+    })
+  }
+  addNewConversationBetweenTwouser(){
+    let obj = {
+      senderId: this.user._id,
+      receiverId: this.foundUser[0]._id,
+    }
+    this.chatService.addConversation(obj).subscribe((data) =>{
+      this.conversations = [data,...this.conversations]
+      console.log(data)
     })
   }
 
   addUserAndGetUsers(data){
     console.log("Data",data)
-    this.socket.emit("addUser", data[0]._id);
+    this.socket.emit("addUser", data._id);
     this.socket.on("getUsers", (users) => {
       this.onlineUsers = this.user.followings.filter((f) => users.some((u) => u.userId === f))
-
+      console.log("ONLINE", this.onlineUsers)
     });
   }
 
@@ -137,11 +156,6 @@ export class ChatComponent implements OnInit , AfterViewInit, AfterViewChecked {
     } catch (err) {
       console.log(err)}
   }
-  // scrollToBottom(): void {
-  //   try {
-  //     this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-  //   } catch(err) { }
-  // }
 
   // sendMessage() {
   //   this.chatService.sendMessage(this.newMessage);

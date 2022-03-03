@@ -33,9 +33,33 @@ export class ChatService {
       })
     );
   }
+  getUserByUsername(username): Observable<[any]> {
+    console.log("req.params.username",username)
+    return this.http.get<[any]>(`${environment.url}/api/user/username/${username}`).pipe(
+      retryWhen((errors) =>{
+        return concat(
+          errors.pipe(delay(500),
+            take(3)),
+          throwError(new Error('Retry limit exceeded'))
+        )
+      })
+    );
+  }
 
-  getConversationBetweenTwoUsers(): Observable<[any]> {
-    return this.http.get<[any]>(`${environment.url}/api/conversation/find/:firstUserId/:secondUserId`).pipe(
+  // getConversationBetweenTwoUsers(): Observable<[any]> {
+  //   return this.http.get<[any]>(`${environment.url}/api/conversation/find/:firstUserId/:secondUserId`).pipe(
+  //     retryWhen((errors) =>{
+  //       return concat(
+  //         errors.pipe(delay(500),
+  //           take(3)),
+  //         throwError(new Error('Retry limit exceeded'))
+  //       )
+  //     })
+  //   );
+  // }
+  getInfoBetweenTwoUsers(id1, id2): Observable<[any]> {
+    console.log("id1, id2",id1, id2)
+    return this.http.get<[any]>(`${environment.url}/api/user/find/${id1}/${id2}`).pipe(
       retryWhen((errors) =>{
         return concat(
           errors.pipe(delay(500),
@@ -47,6 +71,18 @@ export class ChatService {
   }
   addMessage(model: any): Observable<any> {
     return this.http.post<any>(`${environment.url}/api/message`, model).pipe(
+      retryWhen((errors) =>{
+        return concat(
+          errors.pipe(delay(500),
+            take(3)),
+          throwError(new Error('Retry limit exceeded'))
+        )
+      })
+    );
+  }
+
+  addConversation(model: any): Observable<any> {
+    return this.http.post<any>(`${environment.url}/api/conversation`, model).pipe(
       retryWhen((errors) =>{
         return concat(
           errors.pipe(delay(500),

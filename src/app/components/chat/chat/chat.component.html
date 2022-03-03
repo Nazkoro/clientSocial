@@ -11,6 +11,26 @@
 
               <!-- Contact List in Left-->
               <ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer" >
+                <label for="site-search">Search user to chat:</label>
+                <input type="search" class="search" id="site-search" name="q"
+                       aria-label="Search through site content" placeholder="Type username" [(ngModel)]="username">
+                <button (click)="findUser()">Search</button>
+                <div *ngIf="this.foundUser !== undefined  && this.foundUser.length !== 0" style="border: black solid 1px" (click)="addNewConversationBetweenTwouser()">
+<!--                  {{this.foundUser[0].username}}-->
+                  <ng-container  *ngIf="this.foundUser[0].coverPicture">
+                    <img src="http://localhost:4000/images/{{this.foundUser[0].coverPicture}}" alt="user"  class="profile-photo-sm pull-left"/>
+                  </ng-container>
+                  <ng-container *ngIf="!this.foundUser[0].coverPicture">
+                    <img src="https://www.blexar.com/avatar.png" alt="user" class="profile-photo-sm pull-left" />
+                  </ng-container>
+                  <div class="msg-preview">
+                    <h6>{{this.foundUser[0].username}}</h6>
+                  </div>
+                </div>
+
+                <div *ngIf="this.foundUser == undefined ||this.foundUser.length === 0">
+                  wrong username
+                </div>
             <ng-container *ngFor="let conversation of conversations">
               <app-conversations [conversation] = "conversation" [user] = "user" (click)="openConversation(conversation)"></app-conversations>
             </ng-container>
@@ -25,7 +45,7 @@
                           <div >
                             <ng-container *ngFor="let message of listOfMessages">
 
-                                <app-messages [message] = "message" [own] = "message.sender === user._id" ></app-messages>
+                                <app-messages [message] = "message"  [own] = "message.sender === user._id" ></app-messages>
 
                             </ng-container>
                           </div>
