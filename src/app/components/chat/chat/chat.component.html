@@ -45,7 +45,7 @@
                           <div >
                             <ng-container *ngFor="let message of listOfMessages">
 
-                                <app-messages [message] = "message"  [own] = "message.sender === user._id" ></app-messages>
+                                <app-messages [message] = "message"  [own] = "message.sender._id == user._id" ></app-messages>
 
                             </ng-container>
                           </div>
