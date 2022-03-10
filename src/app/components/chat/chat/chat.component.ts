@@ -4,6 +4,7 @@ import {BaseService} from "../../../services/base-service";
 import {io} from "socket.io-client";
 import {BehaviorSubject} from "rxjs";
 import {TestSubjectService} from "../../../services/TestSubjectService";
+import {login} from "../../../store/admin-auth-store/store/admin-auth.actions";
 
 
 @Component({
@@ -20,7 +21,9 @@ export class ChatComponent implements OnInit{
   listOfMessages: any[];
   sendText: any;
   username: any;
-  foundUser: any;
+  foundUser: any = " ";
+  userConversationExist: boolean = false;
+
   //передавать масив пользователя вместе с сообщение в message component
 
   socket = io('http://localhost:8900');
@@ -38,37 +41,54 @@ export class ChatComponent implements OnInit{
       console.log("addUserAndGetUsers", data)
       this.chatService.getAllConversation(data._id).subscribe((data: any) => {
         this.conversations = data
+        console.log("conversations",data)
       })
     });
 
-    this.socket.on('getMessage', (message) =>{
 
+    this.socket.on('getMessage', (message) =>{
       this.arrivalMessage = {
         sender: message.senderId,
         text: message.text,
         createdAt: Date.now(),
       }
-      //расширить обьект this.arrivalMessage обьектом User
       console.log(message);
       this.listOfMessages = [...this.listOfMessages, this.arrivalMessage]
       // this.testSubjectService.sendMessage({...this.arrivalMessage,chatId: this.currentOpenChat._id});
     });
   }
 
+  addGroupChat(){
+
+  }
+  onChat(users) {
+    console.log("happy users", users)
+    // this.store$.dispatch(login(loginPayload));
+  }
+
   findUser(){
     this.chatService.getUserByUsername(this.username).subscribe((data: any) =>{
+      console.log(data)
       this.foundUser = data;
+      this.conversations?.forEach((conversation) => {
+        if(conversation.members.includes(data[0]?._id)){
+          this.userConversationExist = true;
+          this.foundUser = "chat already exists";
+        }
+      })
     })
     this.username = '';
   }
 
+
+
   openConversation(conversation){
     this.currentOpenChat = conversation
     console.log("Беседа ", conversation)
-    this.chatService.getInfoBetweenTwoUsers(conversation.members[0], conversation.members[1]).subscribe((data) => {
-      this.testSubjectService.sendMessage(data);
-      console.log("line 70 array users",data)
-    })
+    // this.chatService.getInfoBetweenTwoUsers(conversation.members[0], conversation.members[1]).subscribe((data) => {
+    //   this.testSubjectService.sendMessage(data);
+    //   console.log("line 70 array users",data)
+    // })
     this.chatService.getAllMessageBetweenUser(conversation._id).subscribe((data: any) => {
       this.listOfMessages = data;
     })
@@ -80,9 +100,11 @@ export class ChatComponent implements OnInit{
       receiverId: this.foundUser[0]._id,
     }
     this.chatService.addConversation(obj).subscribe((data) =>{
-      this.conversations = [data,...this.conversations]
-      console.log(data)
+
+      this.conversations = [data,...this.conversations];
+      console.log(data);
     })
+    this.foundUser = ' ';
   }
 
   addUserAndGetUsers(data){

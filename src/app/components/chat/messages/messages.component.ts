@@ -15,20 +15,18 @@ export class MessagesComponent implements OnInit, OnDestroy {
   subscription: any;
 
 
-// нужно отписаться чтобы не выгружать память
-
   constructor(private baseService: BaseService<any>, private testSubjectService: TestSubjectService) {
-    this.subscription = this.testSubjectService.getMessage().subscribe(data => {
-      this.users = data;
-      console.log("message component ", data)
-    });
+    // this.subscription = this.testSubjectService.getMessage().subscribe(data => {
+    //   this.users = data;
+    //   console.log("message component ", data)
+    // });
   }
 
   ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
 }

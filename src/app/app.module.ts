@@ -44,6 +44,8 @@ import { TimelineHeaderComponent } from './components/timeline-header/timeline-h
 import { TimelineRightmenuComponent } from './components/timeline-rightmenu/timeline-rightmenu/timeline-rightmenu.component';
 import { ConversationsComponent } from './components/chat/conversations/conversations.component';
 import { MessagesComponent } from './components/chat/messages/messages.component';
+import { ModalComponent } from './components/chat/modal/modal.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -73,24 +75,26 @@ import { MessagesComponent } from './components/chat/messages/messages.component
     TimelineHeaderComponent,
     TimelineRightmenuComponent,
     ConversationsComponent,
-    MessagesComponent
+    MessagesComponent,
+    ModalComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    AuthModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    StoreModule.forRoot(reducers),
-    StoreRouterConnectingModule.forRoot(),
-    AdminAuthStoreModule,
-    PostsStoreModule,
-    UserStoreModule,
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        AuthModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        StoreModule.forRoot(reducers),
+        StoreRouterConnectingModule.forRoot(),
+        AdminAuthStoreModule,
+        PostsStoreModule,
+        UserStoreModule,
+        EffectsModule.forRoot([]),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+        MatSelectModule,
+    ],
   providers: [AboutGuard,
     // {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptService, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

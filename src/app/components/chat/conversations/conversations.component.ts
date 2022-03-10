@@ -17,29 +17,24 @@ export class ConversationsComponent implements OnInit, OnDestroy {
 
 
 
-// нужно отписаться чтобы не выгружать память
-
   constructor(private baseService: BaseService<any>, private testSubjectService: TestSubjectService) {
-    this.subscription = this.testSubjectService.getMessage().subscribe(message => {
-      this.message = message;
-      console.log("incinversation component ", message)
-    });
+    // this.subscription = this.testSubjectService.getMessage().subscribe(message => {
+    //   this.message = message;
+    //   console.log("incinversation component ", message)
+    // });
   }
 
 
   ngOnInit(): void {
    const friendId =  this.conversation.members.find((m) => m!== this.user._id);
     this.baseService.getChatUser(friendId).subscribe((data:any) => {
-      // console.log(data)
       this.currentuser = data
     })
-    console.log("conversation", this.conversation)
-    // getChatUser
-   // const getuser = baseService
+
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
 }
