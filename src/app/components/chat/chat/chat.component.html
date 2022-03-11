@@ -8,8 +8,9 @@
             <input type="search" class="search" id="site-search" name="q"
                    aria-label="Search through site content" placeholder="Type username" [(ngModel)]="username">
             <button (click)="findUser()">Search</button>
-            <button (click)="addGroupChat()">+</button>
-            <app-modal (chat)="onChat($event)"></app-modal>
+
+            <app-modal (chat)="onChat($event)" [currentUser] = "user"></app-modal>
+
               <div *ngIf="!this.userConversationExist && this.foundUser !== undefined  && this.foundUser.length !== 0 &&this.foundUser !== ' '" style="border: black solid 1px" (click)="addNewConversationBetweenTwouser()">
                 <ng-container  *ngIf="this.foundUser[0].coverPicture">
                   <img src="http://localhost:4000/images/{{this.foundUser[0].coverPicture}}" alt="user"  class="profile-photo-sm pull-left"/>

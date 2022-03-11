@@ -58,12 +58,16 @@ export class ChatComponent implements OnInit{
     });
   }
 
-  addGroupChat(){
 
-  }
   onChat(users) {
-    console.log("happy users", users)
-    // this.store$.dispatch(login(loginPayload));
+    console.log("happy users", users);
+    const listUsers = [this.user, ...users];
+    this.chatService.addGruopChat(listUsers).subscribe((data) =>{
+      //
+      // this.conversations = [data,...this.conversations];
+      console.log(data);
+    })
+
   }
 
   findUser(){
@@ -85,10 +89,6 @@ export class ChatComponent implements OnInit{
   openConversation(conversation){
     this.currentOpenChat = conversation
     console.log("Беседа ", conversation)
-    // this.chatService.getInfoBetweenTwoUsers(conversation.members[0], conversation.members[1]).subscribe((data) => {
-    //   this.testSubjectService.sendMessage(data);
-    //   console.log("line 70 array users",data)
-    // })
     this.chatService.getAllMessageBetweenUser(conversation._id).subscribe((data: any) => {
       this.listOfMessages = data;
     })

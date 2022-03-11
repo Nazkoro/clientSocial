@@ -1,7 +1,7 @@
 <mat-form-field appearance="fill" style="background-color: #1b6d85">
-  <mat-label>Toppings</mat-label>
-  <mat-select [formControl]="toppings" multiple>
-    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+  <mat-label>Users</mat-label>
+  <mat-select [formControl]="users" multiple>
+    <mat-option *ngFor="let user of usersList" [value]="user">{{user.username}}</mat-option>
   </mat-select>
 </mat-form-field>
 <button (click)="send()">Добавить</button>

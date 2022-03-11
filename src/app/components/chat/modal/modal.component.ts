@@ -1,5 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {BaseService} from "../../../services/base-service";
 
 
 @Component({
@@ -8,19 +9,28 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
+  @Input() currentUser: any;
   @Output() chat = new EventEmitter();
-  toppings = new FormControl();
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  // toppings = new FormControl();
+  // toppingList: any[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  users = new FormControl();
+  usersList: any[] ;
 
-  constructor() { }
+
+  constructor(private baseService: BaseService<any>) { }
 
   ngOnInit(): void {
+    console.log("currentUser", this.currentUser)
+    this.baseService.getUsers().subscribe((data) =>{
+      this.usersList = data.filter((user) => user._id !== this.currentUser._id)
+    })
 
   }
 
   send(){
-    this.chat.emit(this.toppings.value);
-    console.log("this.toppings", this.toppings.value)
+    console.log("currentUser", this.currentUser)
+    this.chat.emit(this.users.value);
+    this.users.reset()
   }
 
 }

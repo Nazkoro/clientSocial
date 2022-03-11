@@ -92,6 +92,17 @@ export class ChatService {
       })
     );
   }
+  addGruopChat(model: any): Observable<any> {
+    return this.http.post<any>(`${environment.url}/api/multi-conversation`, model).pipe(
+      retryWhen((errors) =>{
+        return concat(
+          errors.pipe(delay(500),
+            take(3)),
+          throwError(new Error('Retry limit exceeded'))
+        )
+      })
+    );
+  }
 
   // socket = io('http://localhost:8900');
   //
