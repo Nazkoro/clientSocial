@@ -46,6 +46,9 @@ import { ConversationsComponent } from './components/chat/conversations/conversa
 import { MessagesComponent } from './components/chat/messages/messages.component';
 import { ModalComponent } from './components/chat/modal/modal.component';
 import {MatSelectModule} from "@angular/material/select";
+import { GroupConversationComponent } from './components/chat/group-conversation/group-conversation.component';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -76,25 +79,28 @@ import {MatSelectModule} from "@angular/material/select";
     TimelineRightmenuComponent,
     ConversationsComponent,
     MessagesComponent,
-    ModalComponent
+    ModalComponent,
+    GroupConversationComponent
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        AppRoutingModule,
-        AuthModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        StoreModule.forRoot(reducers),
-        StoreRouterConnectingModule.forRoot(),
-        AdminAuthStoreModule,
-        PostsStoreModule,
-        UserStoreModule,
-        EffectsModule.forRoot([]),
-        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-        MatSelectModule,
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    AuthModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    StoreModule.forRoot(reducers),
+    StoreRouterConnectingModule.forRoot(),
+    AdminAuthStoreModule,
+    PostsStoreModule,
+    UserStoreModule,
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatCardModule,
+  ],
   providers: [AboutGuard,
     // {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptService, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

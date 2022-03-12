@@ -10,6 +10,12 @@
             <button (click)="findUser()">Search</button>
 
             <app-modal (chat)="onChat($event)" [currentUser] = "user"></app-modal>
+                  <mat-slide-toggle
+                    class="example-margin"
+                    [(ngModel)]="checkedChat"
+                    [disabled]="disabled">
+                    Show chat
+                  </mat-slide-toggle>
 
               <div *ngIf="!this.userConversationExist && this.foundUser !== undefined  && this.foundUser.length !== 0 &&this.foundUser !== ' '" style="border: black solid 1px" (click)="addNewConversationBetweenTwouser()">
                 <ng-container  *ngIf="this.foundUser[0].coverPicture">
@@ -29,9 +35,19 @@
             <div *ngIf="this.userConversationExist ">
               user Conversation Exist
             </div>
-            <ng-container *ngFor="let conversation of conversations">
-              <app-conversations [conversation] = "conversation" [user] = "user" (click)="openConversation(conversation)"></app-conversations>
+
+            <ng-container *ngIf="!checkedChat">
+              <ng-container *ngFor="let conversation of conversations">
+                <app-conversations [conversation] = "conversation" [user] = "user" (click)="openConversation(conversation)"></app-conversations>
+              </ng-container>
             </ng-container>
+
+            <ng-container *ngIf="checkedChat">
+              <ng-container *ngFor="let groupConversation of groupConversations">
+                <app-group-conversation [conversation] = "groupConversation" [user] = "user" (click)="openConversation(groupConversation)"></app-group-conversation>
+              </ng-container>
+            </ng-container>
+
           </ul>
         </div>
 

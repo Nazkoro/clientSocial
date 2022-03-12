@@ -1,16 +1,16 @@
 
           <li class="left" [ngClass]="{right:own}">
-            <h5>{{own}}</h5>
-
             <ng-container *ngIf="this.own">
-              <img src="http://localhost:4000/images/{{message.sender.coverPicture}}" alt=""  [ngClass]="own ? 'profile-photo-sm pull-right' : 'profile-photo-sm pull-left'"/>
+              <img src="http://localhost:4000/images/{{this.url.coverPicture}}" alt=""  [ngClass]="own ? 'profile-photo-sm pull-right' : 'profile-photo-sm pull-left'"/>
             </ng-container>
             <ng-container *ngIf="!this.own">
-              <img src="http://localhost:4000/images/{{message.sender.coverPicture}}" alt=""  [ngClass]="own ? 'profile-photo-sm pull-right' : 'profile-photo-sm pull-left'"/>
+              <img src="http://localhost:4000/images/{{this.url.coverPicture}}" alt=""  [ngClass]="own ? 'profile-photo-sm pull-right' : 'profile-photo-sm pull-left'"/>
             </ng-container>
             <div class="chat-item">
               <div class="chat-item-header">
-                <h5>{{message.sender.username}}</h5>
+                <h5 >{{this.url.username}}</h5>
+<!--                <h5 *ngIf="message.sender">{{message.sender.username}}</h5>-->
+<!--                <h5 *ngIf="!message.sender">{{message?.username}}</h5>-->
                 <small class="text-muted">{{message.createdAt | date : 'short'}}</small>
               </div>
               <p>{{message.text}}</p>

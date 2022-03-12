@@ -4,3 +4,19 @@
 .search{
   border: #0f0f0f solid 1px;
 }
+.example-h2 {
+  margin: 2px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 30px;
+}
+
+.example-margin {
+  background-color: #1b6d85;
+  color: white;
+  margin: 10px;
+}

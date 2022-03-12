@@ -22,6 +22,18 @@ export class ChatService {
       })
     );
   }
+  getAllGropConversation(id): Observable<[any]> {
+    return this.http.get<[any]>(`${environment.url}/api/multi-conversation/${id}`).pipe(
+      retryWhen((errors) =>{
+        return concat(
+          errors.pipe(delay(500),
+            take(3)),
+          throwError(new Error('Retry limit exceeded'))
+        )
+      })
+    );
+  }
+
   getAllMessageBetweenUser(id): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/message/${id}`).pipe(
       retryWhen((errors) =>{

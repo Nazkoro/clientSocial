@@ -1,0 +1,22 @@
+<!--<li *ngIf="currentuser" class="li-conversation">-->
+<li class="li-conversation">
+  <div class="contact">
+
+<!--    <ng-container  *ngIf="currentuser.coverPicture">-->
+<!--      <img src="http://localhost:4000/images/{{currentuser.coverPicture}}" alt="user"  class="profile-photo-sm pull-left"/>-->
+<!--    </ng-container>-->
+<!--    <ng-container *ngIf="!currentuser.coverPicture">-->
+<!--      <img src="https://www.blexar.com/avatar.png" alt="user" class="profile-photo-sm pull-left" />-->
+<!--    </ng-container>-->
+    <img src="https://www.ualberta.ca/information-services-and-technology/media-library/images/vera-chat.jpg" alt="user" class="profile-photo-sm pull-left" />
+    <div class="msg-preview">
+<!--      <h6>{{currentuser.username}}</h6>-->
+      <h6>chat</h6>
+      <p class="text-muted" *ngIf="this.message && this.message.chatId == this.conversation._id">{{this.message?.text}}</p>
+      <p class="text-muted" *ngIf="!(this.message && this.message.chatId == this.conversation._id)">see you soon</p>
+      <small class="text-muted">{{this.conversation.updatedAt | date}}</small>
+      <div class="seen"><i class="icon ion-checkmark-round"></i>group chat</div>
+
+    </div>
+  </div>
+</li>
