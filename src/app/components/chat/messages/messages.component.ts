@@ -26,10 +26,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.url = this.message?.sender?.username? this.message.sender : this.message;
-    console.log("=================================================================")
-    console.log("this.message", this.message)
-    console.log("this.message.sender", this.message.sender)
-    console.log("this.url", this.url)
+
   }
 
   ngOnDestroy(): void {

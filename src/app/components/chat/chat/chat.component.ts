@@ -44,6 +44,7 @@ export class ChatComponent implements OnInit{
       this.addUserAndGetUsersSocket(user)
       this.chatService.getAllConversation(user._id).subscribe((conversations: any) => {
         this.conversations = conversations
+        console.log("conversations",conversations)
       })
       this.chatService.getAllGropConversation(user._id).subscribe((groupConversations: any) => {
         this.groupConversations = groupConversations
@@ -62,6 +63,7 @@ export class ChatComponent implements OnInit{
       }
       console.log(message);
       this.listOfMessages = [...this.listOfMessages, this.arrivalMessage]
+      this.divView.nativeElement.scrollIntoView({block: "end",behavior: "smooth"});
       // this.testSubjectService.sendMessage({...this.arrivalMessage,chatId: this.currentOpenChat._id});
     });
   }
@@ -95,7 +97,9 @@ export class ChatComponent implements OnInit{
     console.log("Беседа ", conversation)
     this.chatService.getAllMessageBetweenUser(conversation._id).subscribe((data: any) => {
       this.listOfMessages = data;
+
     })
+
   }
 
   addNewConversationBetweenTwouser(){
