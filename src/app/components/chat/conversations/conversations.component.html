@@ -17,7 +17,7 @@
                 <p class="text-muted" *ngIf="!(this.message && this.message.chatId == this.conversation._id)">see you soon</p>
                 <small class="text-muted">{{this.conversation.updatedAt | date}}</small>
                 <div class="seen"><i class="icon ion-checkmark-round"></i></div>
-                <span *ngIf="conversation?.ListMessage.length > 0 "> unread message: {{conversation.ListMessage.length}}</span>
+                <span *ngIf="conversation?.ListMessage.length > 0 "> all message: {{conversation.ListMessage.length}}</span>
               </div>
             </div>
 <!--          </a>-->

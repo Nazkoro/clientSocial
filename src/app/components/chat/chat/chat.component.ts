@@ -24,6 +24,7 @@ export class ChatComponent implements OnInit{
   groupConversations: any[];
   currentOpenChat: any;
   listOfMessages: any[];
+  listOfUnreadMessages: any[] = [];
   sendText: any;
   username: any;
   foundUser: any = " ";
@@ -53,17 +54,34 @@ export class ChatComponent implements OnInit{
     });
 
     this.socket.on('getMessage', (message) =>{
-      this.arrivalMessage = {
-        sender: message.senderId,
-        text: message.text,
-        coverPicture: message.coverPicture,
-        username: message.username,
 
-        createdAt: Date.now(),
+      console.log("message.roomId = ",message.roomId,"currentOpenChat = ", this.currentOpenChat)
+      //если айди комнаты и чата совпадают то вывожу колво всех непрочитаных смс
+      if(message.roomId._id === this.currentOpenChat._id ){
+        console.log("number of unread message", this.listOfUnreadMessages.length)
+        console.log(message);
+        this.arrivalMessage = {
+          sender: message.senderId,
+          text: message.text,
+          coverPicture: message.coverPicture,
+          username: message.username,
+
+          createdAt: Date.now(),
+        }
+
+        this.listOfMessages = [...this.listOfMessages, this.arrivalMessage]
+        this.divView.nativeElement.scrollIntoView({block: "end",behavior: "smooth"});
+        this.listOfUnreadMessages = [];
+
+      } else {
+        //а если айди не совпадает то скаладываю смс в масив
+        // this.listOfUnreadMessages = {
+        // }
+        console.log("chat close line 75", message)
+        this.listOfUnreadMessages.push(message);
+        console.log("array lol kek",  this.listOfUnreadMessages);
       }
-      console.log(message);
-      this.listOfMessages = [...this.listOfMessages, this.arrivalMessage]
-      this.divView.nativeElement.scrollIntoView({block: "end",behavior: "smooth"});
+
       // this.testSubjectService.sendMessage({...this.arrivalMessage,chatId: this.currentOpenChat._id});
     });
   }
@@ -94,7 +112,7 @@ export class ChatComponent implements OnInit{
 
   openConversation(conversation){
     this.currentOpenChat = conversation
-    console.log("Беседа ", conversation)
+    console.log("Беседа line 98 OPEN CHAT", conversation)
     this.chatService.getAllMessageBetweenUser(conversation._id).subscribe((data: any) => {
       this.listOfMessages = data;
 
@@ -132,6 +150,7 @@ export class ChatComponent implements OnInit{
         text:  this.sendText,
         coverPicture: this.user.coverPicture,
         username: this.user.username,
+        roomId: this.currentOpenChat
       });
     } else if (this.checkedChat){
 
