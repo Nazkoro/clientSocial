@@ -1,28 +1,24 @@
-<!--<div class="col-md-5">-->
+<li *ngIf="currentuser" class="li-conversation">
+  <div class="contact">
+    <ng-container  *ngIf="currentuser.coverPicture">
+      <img src="http://localhost:4000/images/{{currentuser.coverPicture}}" alt="user"  class="profile-photo-sm pull-left"/>
+    </ng-container>
+    <ng-container *ngIf="!currentuser.coverPicture">
+      <img src="https://www.blexar.com/avatar.png" alt="user" class="profile-photo-sm pull-left" />
+    </ng-container>
+    <div class="msg-preview">
+      <h6>{{currentuser.username}}</h6>
+<!--      <p class="text-muted" *ngIf="this.message && this.message.chatId == this.conversation._id">{{this.message?.text}}</p>-->
+<!--      <p class="text-muted" *ngIf="!(this.message && this.message.chatId == this.conversation._id)">see you soon</p>-->
+      <p class="text-muted" *ngIf="message">{{message?.text}}</p>
+      <p class="text-muted" *ngIf="!message">see you soon</p>
+      <small class="text-muted">{{this.conversation.updatedAt | date}}</small>
+      <span (click)="removeConversation(conversation)" style="cursor: pointer"><i class="fa fa-trash-o fa-fw"></i></span>
+      <div class="seen"><i class="icon ion-checkmark-round"></i></div>
+      <span *ngIf="conversation?.ListMessage.length > 0 "> all message: {{conversation.ListMessage.length}}</span>
+      <span *ngIf="message"><br>unread message: {{message.countMessage}}</span>
 
-<!--  &lt;!&ndash; Contact List in Left&ndash;&gt;-->
-<!--  <ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer" >-->
-        <li *ngIf="currentuser" class="li-conversation">
-<!--          <a href="#contact-2" data-toggle="tab">-->
-            <div class="contact">
-              <ng-container  *ngIf="currentuser.coverPicture">
-                <img src="http://localhost:4000/images/{{currentuser.coverPicture}}" alt="user"  class="profile-photo-sm pull-left"/>
-              </ng-container>
-              <ng-container *ngIf="!currentuser.coverPicture">
-                <img src="https://www.blexar.com/avatar.png" alt="user" class="profile-photo-sm pull-left" />
-              </ng-container>
-              <div class="msg-preview">
-                <h6>{{currentuser.username}}</h6>
-                <p class="text-muted" *ngIf="this.message && this.message.chatId == this.conversation._id">{{this.message?.text}}</p>
-                <p class="text-muted" *ngIf="!(this.message && this.message.chatId == this.conversation._id)">see you soon</p>
-                <small class="text-muted">{{this.conversation.updatedAt | date}}</small>
-                <div class="seen"><i class="icon ion-checkmark-round"></i></div>
-                <span *ngIf="conversation?.ListMessage.length > 0 "> all message: {{conversation.ListMessage.length}}</span>
-              </div>
-            </div>
-<!--          </a>-->
-        </li>
+    </div>
+  </div>
+</li>
 
-<!--  </ul>&lt;!&ndash;Contact List in Left End&ndash;&gt;-->
-
-<!--</div>-->

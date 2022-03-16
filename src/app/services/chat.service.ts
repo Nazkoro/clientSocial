@@ -116,6 +116,19 @@ export class ChatService {
     );
   }
 
+  deleteConversation(model): Observable<any> {
+    console.log(model)
+    return this.http.delete<any>(`${environment.url}/api/conversation/delete/${model._id}`).pipe(
+      retryWhen((errors) =>{
+        return concat(
+          errors.pipe(delay(500),
+            take(3)),
+          throwError(new Error('Retry limit exceeded'))
+        )
+      })
+    );
+  }
+
   // socket = io('http://localhost:8900');
   //
   // public sendMessage(message) {

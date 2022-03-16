@@ -25,6 +25,7 @@ export class ChatComponent implements OnInit{
   currentOpenChat: any;
   listOfMessages: any[];
   listOfUnreadMessages: any[] = [];
+  collectionUnreadMessage: any = new Map();
   sendText: any;
   username: any;
   foundUser: any = " ";
@@ -53,37 +54,7 @@ export class ChatComponent implements OnInit{
       })
     });
 
-    this.socket.on('getMessage', (message) =>{
-
-      console.log("message.roomId = ",message.roomId,"currentOpenChat = ", this.currentOpenChat)
-      //если айди комнаты и чата совпадают то вывожу колво всех непрочитаных смс
-      if(message.roomId._id === this.currentOpenChat._id ){
-        console.log("number of unread message", this.listOfUnreadMessages.length)
-        console.log(message);
-        this.arrivalMessage = {
-          sender: message.senderId,
-          text: message.text,
-          coverPicture: message.coverPicture,
-          username: message.username,
-
-          createdAt: Date.now(),
-        }
-
-        this.listOfMessages = [...this.listOfMessages, this.arrivalMessage]
-        this.divView.nativeElement.scrollIntoView({block: "end",behavior: "smooth"});
-        this.listOfUnreadMessages = [];
-
-      } else {
-        //а если айди не совпадает то скаладываю смс в масив
-        // this.listOfUnreadMessages = {
-        // }
-        console.log("chat close line 75", message)
-        this.listOfUnreadMessages.push(message);
-        console.log("array lol kek",  this.listOfUnreadMessages);
-      }
-
-      // this.testSubjectService.sendMessage({...this.arrivalMessage,chatId: this.currentOpenChat._id});
-    });
+      this.soketGetMessage()
   }
 
   onChat(users) {
@@ -119,6 +90,9 @@ export class ChatComponent implements OnInit{
     })
 
   }
+  deleteConversation(dropConv){
+    this.conversations = this.conversations.filter((currentConv) => currentConv._id != dropConv._id)
+  }
 
   addNewConversationBetweenTwouser(){
     let obj = {
@@ -138,6 +112,42 @@ export class ChatComponent implements OnInit{
     this.socket.on("getUsers", (users) => {
       this.onlineUsers = this.user.followings.filter((f) => users.some((u) => u.userId === f))
     });
+  }
+
+  soketGetMessage(){
+    this.socket.on('getMessage', (message) =>{
+      console.log("    this.socket.on('getMessage', (message) =", message)
+
+      console.log("message.roomId = ",message.roomId,"currentOpenChat = ", this.currentOpenChat)
+      //если айди комнаты и чата совпадают то вывожу колво всех непрочитаных смс
+      //if(message.roomId._id === this.currentOpenChat._id ){
+      //   console.log("mesage dont show", this.collectionUnreadMessage.get( message?.roomId?._id));
+      //   console.log("number of unread message", this.listOfUnreadMessages.length)
+        console.log("message", message);
+        this.arrivalMessage = {
+          sender: message.senderId,
+          text: message.text,
+          coverPicture: message.coverPicture,
+          username: message.username,
+          countMessage: message.countMessage,
+          createdAt: Date.now(),
+        }
+        this.listOfMessages = [...this.listOfMessages, this.arrivalMessage]
+        this.divView.nativeElement.scrollIntoView({block: "end",behavior: "smooth"});
+        this.listOfUnreadMessages = [];
+        this.testSubjectService.sendMessage(message)
+      //}
+
+      // else {
+      //   console.log("message", message);
+      //   this.listOfUnreadMessages.push(message);
+      //   this.collectionUnreadMessage.set(message.roomId._id, message);
+      //
+      //   console.log(" mesage in colletction", this.collectionUnreadMessage.get( message?.roomId?._id));
+      //   console.log("array lol kek",  this.listOfUnreadMessages);
+      // }
+    });
+
   }
 
   soketSendMessage(){
@@ -161,7 +171,6 @@ export class ChatComponent implements OnInit{
         coverPicture: this.user.coverPicture,
         username: this.user.username,
       });
-
     }
 
   }

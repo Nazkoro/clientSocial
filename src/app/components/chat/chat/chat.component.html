@@ -3,7 +3,7 @@
       <div  class="row">
 
         <div class="col-md-5 conversation" >
-          <ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer" >
+          <ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer delete-scroll" >
             <label for="site-search">Search user to chat:</label>
             <input type="search" class="search" id="site-search" name="q"
                    aria-label="Search through site content" placeholder="Type username" [(ngModel)]="username">
@@ -38,7 +38,7 @@
 
             <ng-container *ngIf="!checkedChat">
               <ng-container *ngFor="let conversation of conversations">
-                <app-conversations [conversation] = "conversation" [user] = "user" (click)="openConversation(conversation)"></app-conversations>
+                <app-conversations (deleteConv)="deleteConversation($event)" [conversation] = "conversation" [user] = "user" (click)="openConversation(conversation)"></app-conversations>
               </ng-container>
             </ng-container>
 
@@ -76,7 +76,7 @@
 
           <div class="send-message">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Type your message" [(ngModel)]="sendText">
+              <input type="text" class="form-control" placeholder="Type your message" [(ngModel)]="sendText" (keydown.enter)="handleSubmit()">
               <span class="input-group-btn">
                     <button class="btn btn-default" type="button"  (click)="handleSubmit()">Send</button>
                   </span>

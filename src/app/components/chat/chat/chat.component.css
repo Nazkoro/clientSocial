@@ -20,3 +20,6 @@
   color: white;
   margin: 10px;
 }
+.delete-scroll::-webkit-scrollbar {
+  width: 0;
+}
