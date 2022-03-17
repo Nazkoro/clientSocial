@@ -38,7 +38,13 @@
 
             <ng-container *ngIf="!checkedChat">
               <ng-container *ngFor="let conversation of conversations">
-                <app-conversations (deleteConv)="deleteConversation($event)" [conversation] = "conversation" [user] = "user" (click)="openConversation(conversation)"></app-conversations>
+                <app-conversations
+                  (deleteConv)="deleteConversation($event)"
+                  (deleteCountMessage)="soketSendMessage($event)"
+                  [conversation] = "conversation"
+                  [user] = "user"
+                  (click)="openConversation(conversation)">
+                </app-conversations>
               </ng-container>
             </ng-container>
 
@@ -50,7 +56,6 @@
 
           </ul>
         </div>
-
 
         <ng-container *ngIf="currentOpenChat" >
           <div class="col-md-7">
@@ -71,7 +76,7 @@
         </ng-container>
 
         <ng-container *ngIf="!currentOpenChat">
-          <h3 >start chating with ...</h3>
+          <h3 style="text-align: center">start chating with ...</h3>
         </ng-container>
 
           <div class="send-message">
@@ -87,4 +92,4 @@
       </div>
     </div>
  </div>
-
+ <app-chat-users [users] = "this.currentOpenChat?.members"></app-chat-users>

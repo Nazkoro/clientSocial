@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, concat, delay, Observable, retryWhen, take, throwError} from 'rxjs';
-import { io } from "socket.io-client";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 
@@ -58,17 +57,6 @@ export class ChatService {
     );
   }
 
-  // getConversationBetweenTwoUsers(): Observable<[any]> {
-  //   return this.http.get<[any]>(`${environment.url}/api/conversation/find/:firstUserId/:secondUserId`).pipe(
-  //     retryWhen((errors) =>{
-  //       return concat(
-  //         errors.pipe(delay(500),
-  //           take(3)),
-  //         throwError(new Error('Retry limit exceeded'))
-  //       )
-  //     })
-  //   );
-  // }
   getInfoBetweenTwoUsers(id1, id2): Observable<[any]> {
     console.log("id1, id2",id1, id2)
     return this.http.get<[any]>(`${environment.url}/api/user/find/${id1}/${id2}`).pipe(
@@ -116,9 +104,9 @@ export class ChatService {
     );
   }
 
-  deleteConversation(model): Observable<any> {
-    console.log(model)
-    return this.http.delete<any>(`${environment.url}/api/conversation/delete/${model._id}`).pipe(
+  deleteConversation(id): Observable<any> {
+    console.log(`${environment.url}/api/conversation/delete/${id}`)
+    return this.http.delete<any>(`${environment.url}/api/conversation/delete/${id}`).pipe(
       retryWhen((errors) =>{
         return concat(
           errors.pipe(delay(500),
@@ -128,20 +116,5 @@ export class ChatService {
       })
     );
   }
-
-  // socket = io('http://localhost:8900');
-  //
-  // public sendMessage(message) {
-  //   this.socket.emit('message', message);
-  // }
-  //
-  // public getNewMessage = () => {
-  //   this.socket.on('message', (message) =>{
-  //     this.message$.next(message);
-  //   });
-  //
-  //   return this.message$.asObservable();
-  // };
-
 
 }

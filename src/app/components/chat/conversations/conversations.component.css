@@ -2,3 +2,6 @@
   border: #ccc solid 2px;
   margin-bottom: 5px;
 }
+.seen{
+  cursor: pointer;
+}
