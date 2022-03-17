@@ -49,6 +49,7 @@ import {MatSelectModule} from "@angular/material/select";
 import { GroupConversationComponent } from './components/chat/group-conversation/group-conversation.component';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatCardModule} from "@angular/material/card";
+import { ChatUsersComponent } from './components/chat/chat-users/chat-users.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import {MatCardModule} from "@angular/material/card";
     ConversationsComponent,
     MessagesComponent,
     ModalComponent,
-    GroupConversationComponent
+    GroupConversationComponent,
+    ChatUsersComponent
   ],
   imports: [
     BrowserModule,

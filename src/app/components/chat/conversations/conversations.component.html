@@ -14,8 +14,8 @@
       <p class="text-muted" *ngIf="!message">see you soon</p>
       <small class="text-muted">{{this.conversation.updatedAt | date}}</small>
       <span (click)="removeConversation(conversation)" style="cursor: pointer"><i class="fa fa-trash-o fa-fw"></i></span>
-      <div class="seen"><i class="icon ion-checkmark-round"></i></div>
-      <span *ngIf="conversation?.ListMessage.length > 0 "> all message: {{conversation.ListMessage.length}}</span>
+      <div class="seen" (click)="readMessage()">read<i class="icon ion-checkmark-round"></i>?</div>
+<!--      <span *ngIf="conversation?.ListMessage?.length > 0 "> all message: {{conversation.ListMessage.length}}</span>-->
       <span *ngIf="message"><br>unread message: {{message.countMessage}}</span>
 
     </div>
