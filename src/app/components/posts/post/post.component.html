@@ -4,12 +4,12 @@
 </div>
 
 <div class="post-container">
-<!--  <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left" />-->
-  <ng-container *ngIf="!post?.avtorPost[0]?.coverPicture  ">
+
+  <ng-container *ngIf="!post?.userId?.coverPicture  ">
     <img src="https://www.blexar.com/avatar.png" alt="user" class="profile-photo-sm pull-left" />
   </ng-container>
-  <ng-container  *ngIf="post?.avtorPost[0]?.coverPicture ">
-    <img src="http://localhost:4000/images/{{post.avtorPost[0].coverPicture}}" alt="user"  class="profile-photo-sm pull-left"/>
+  <ng-container  *ngIf="post?.userId?.coverPicture ">
+    <img src="http://localhost:4000/images/{{post.userId.coverPicture}}" alt="user"  class="profile-photo-sm pull-left"/>
   </ng-container>
 
   <div class="post-detail">

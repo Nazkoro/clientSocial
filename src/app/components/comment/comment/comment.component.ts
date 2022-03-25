@@ -15,7 +15,7 @@ export class CommentComponent implements OnInit {
   constructor(private baseService: BaseService<any>,private store$: Store) { }
 
   ngOnInit(): void {
-
+    console.log("currentPost", this.currentPost)
   }
   submit(){
 

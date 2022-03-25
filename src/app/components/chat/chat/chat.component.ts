@@ -30,7 +30,6 @@ export class ChatComponent implements OnInit{
 
 
   socket = io('http://localhost:8900');
-  // public  message$: BehaviorSubject<string> = new BehaviorSubject(null);
 
   @ViewChild("myDiv") divView: ElementRef;
 
