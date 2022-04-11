@@ -1,7 +1,8 @@
 <div class="line-divider"></div>
 <ng-container *ngIf="currentPost.coments">
 <div class="post-comment" *ngFor="let coment of currentPost.coments">
-  <img src="http://localhost:4000/images/{{coment?.userId?.coverPicture}}" alt="" class="profile-photo-sm" />
+<!--  <img src="http://localhost:4000/images/{{coment?.userId?.coverPicture}}" alt="" class="profile-photo-sm" />-->
+  <p></p>
   <p><a href="timeline.html" class="profile-link">{{coment.username}} </a>{{coment.text}}</p>
 </div>
 </ng-container>

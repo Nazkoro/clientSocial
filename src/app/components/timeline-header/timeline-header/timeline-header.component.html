@@ -5,9 +5,6 @@
     <div class="row">
       <div class="col-md-3">
         <div class="profile-info" *ngIf="(infoAbooutuser$ | async) as infoUsers">
-          <!--              <app-profile-card></app-profile-card>-->
-<!--          src="http://localhost:4000/images/{{infoUsers.coverPicture}}"-->
-<!--          src="https://forwww.com/wp-content/uploads/2020/02/user_no_photo_300x300.png.pagespeed.ce.I_-dT6aBxJ.png"-->
           <img src="http://localhost:4000/images/{{infoUsers.coverPicture}}" alt="" class="img-responsive profile-photo" />
           <h3>{{infoUsers.firstName }} {{infoUsers.lastName }}</h3>
           <p class="text-muted">{{infoUsers.position }}</p>

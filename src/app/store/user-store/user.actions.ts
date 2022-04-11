@@ -61,9 +61,8 @@ export const updateFailureAction = createAction(
 
 export const updateSuccessAction = createAction(
   '[User] update Failure',
-  props<{ user }>()
+  props<{ user: any }>()
 );
-
 ////
 
 export const deleteRequestAction = createAction(
@@ -79,4 +78,9 @@ export const deleteFailureAction = createAction(
 export const deleteSuccessAction = createAction(
   '[User] delete Success',
   props<{ id: number }>()
+);
+
+export const saveDataUser = createAction(
+  '[User] save data user',
+  props<{ user: any }>()
 );

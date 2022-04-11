@@ -19,8 +19,11 @@ export class TimelineAboutComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("render about")
-    this.user$.subscribe(val => this.info = val)
-    this.store$.dispatch(loadUserRequestAction());
+    this.user$.subscribe(val => {
+      console.log("from store", val)
+      this.info = val
+    })
+    // this.store$.dispatch(loadUserRequestAction());
 
   }
 

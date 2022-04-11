@@ -3,16 +3,18 @@
     <h4 class="grey">all users</h4>
     <div *ngFor="let user of users">
       <div class="follow-user" >
-        <ng-container  *ngIf="user.coverPicture">
-          <img src="http://localhost:4000/images/{{user.coverPicture}}" alt="user"  class="profile-photo-sm pull-left"/>
-        </ng-container>
-        <ng-container *ngIf="!user.coverPicture">
-          <img src="https://www.blexar.com/avatar.png" alt="user" class="profile-photo-sm pull-left" />
-        </ng-container>
-        <div>
-          <h5><a href="timeline.html">{{user.username}}</a></h5>
-          <button (click)="addFriend(user._id)" class=" btn-success">follow</button>
+        <div (click)="relocateToPersonalPage(user)">
+          <ng-container  *ngIf="user.coverPicture">
+            <img src="http://localhost:4000/images/{{user.coverPicture}}" alt="user"  class="profile-photo-sm pull-left"/>
+          </ng-container>
+          <ng-container *ngIf="!user.coverPicture">
+            <img src="https://www.blexar.com/avatar.png" alt="user" class="profile-photo-sm pull-left" />
+          </ng-container>
+          <h5><a routerLink="/timeline-about">{{user.username}}</a></h5>
         </div>
+
+          <button (click)="addFriend(user._id)" class=" btn-success">follow</button>
+
       </div>
     </div>
   </div>
