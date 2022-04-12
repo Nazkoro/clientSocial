@@ -19,6 +19,11 @@ export const getSelectedUser = createSelector(
   state => state.selectedUser
 );
 
+export const getLoginUser = createSelector(
+  getFeature,
+  state => state.loginUser
+);
+
 export const getUserError = createSelector(
   getFeature,
   state => state.error

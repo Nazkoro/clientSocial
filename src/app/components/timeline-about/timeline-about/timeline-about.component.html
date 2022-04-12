@@ -6,7 +6,7 @@
   ================================================= -->
   <div class="timeline">
     <app-timeline-header [info]="info"></app-timeline-header>
-    <div id="page-contents " *ngIf="(user$ | async) as userInfo ">
+    <div id="page-contents " >
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-7">
@@ -17,15 +17,15 @@
 
             <div class="about-content-block">
               <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
-              <p>{{userInfo.desc }}</p>
+              <p>{{(user$ | async)?.desc || (userLogged$ | async)?.desc }}</p>
             </div>
 
             <div class="about-content-block">
               <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Work Experiences</h4>
               <div class="organization">
                 <div class="work-info">
-                  <h5>Company - {{userInfo.jobs}}</h5>
-                  <p> Position - {{userInfo.position}} </p>
+                  <h5>Company - {{(user$ | async)?.jobs || (userLogged$ | async)?.jobs }}</h5>
+                  <p> Position - {{(user$ | async)?.position || (userLogged$ | async)?.position }}</p>
                 </div>
               </div>
             </div>
@@ -34,8 +34,7 @@
               <h4 class="grey"><i class="ion-ios-email-outline icon-in-title"></i>Email</h4>
               <div class="organization">
                 <div class="work-info">
-                  <h5>{{userInfo.email}}</h5>
-
+                  <h5>{{(user$ | async)?.email || (userLogged$ | async)?.email }}</h5>
                 </div>
               </div>
             </div>
@@ -44,14 +43,14 @@
               <h4 class="grey"><i class="ion-ios-camera-outline icon-in-title"></i>birthday</h4>
               <div class="organization">
                 <div class="work-info">
-                  <p> <span class="text-grey">{{userInfo.day}} - {{userInfo.month}} - {{userInfo.year}}</span></p>
+                  <p> <span class="text-grey">{{(user$ | async)?.day || (userLogged$ | async)?.day }} - {{(user$ | async)?.month || (userLogged$ | async)?.month }} - {{(user$ | async)?.year || (userLogged$ | async)?.year }}</span></p>
                 </div>
               </div>
             </div>
 
             <div class="about-content-block">
               <h4 class="grey"><i class="ion-ios-location-outline icon-in-title"></i>Location</h4>
-              <p>{{userInfo.country }}, {{userInfo.city}}</p>
+              <p>{{(user$ | async)?.country || (userLogged$ | async)?.country }},{{(user$ | async)?.city || (userLogged$ | async)?.city }}</p>
             </div>
 
             <div class="about-content-block">

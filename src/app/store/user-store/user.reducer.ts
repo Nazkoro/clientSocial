@@ -1,21 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 import * as BookActionTypes from './user.actions';
-import {login} from "../admin-auth-store/store/admin-auth.actions";
-
-
-
-// export interface User {
-//   _id: string;
-//   desc: string;
-//   img: string;
-//   likes: [];
-//   coments: [];
-// }
+import {saveloginUser} from "./user.actions";
 export const USER_FEATURE_NAME = 'user';
 
 export interface UserState {
   selectedUser: any,
   users: any[],
+  loginUser: any,
   isLoading?: boolean;
   error?: any;
 }
@@ -23,10 +14,12 @@ export interface UserState {
 export const initialState: UserState =
   {
     selectedUser: null,
+    loginUser: null,
     users: [],
     isLoading: false,
     error: null
   };
+
 export const userReducer = createReducer(
   initialState,
   on(BookActionTypes.loadUserRequestAction, (state) => ({
@@ -78,11 +71,12 @@ export const userReducer = createReducer(
   }))
   ,
   on(BookActionTypes.saveDataUser, (state,  user ) => {
-    console.log(user);
     return {...state, selectedUser: user}
   }),
 
-
+  on(BookActionTypes.saveloginUser, (state,  user ) => {
+    return {...state, loginUser: user}
+  }),
 
   on(BookActionTypes.updateFailureAction, (state, { error }) => ({
     ...state,

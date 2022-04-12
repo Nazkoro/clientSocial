@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {getSelectedUser} from "../../../store/user-store/user.selectors";
 import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import * as userStore from "../../../store/user-store/user.selectors";
-import {loadUserRequestAction} from "../../../store/user-store/user.actions";
-
 
 @Component({
   selector: 'app-timeline-about',
@@ -13,15 +10,17 @@ import {loadUserRequestAction} from "../../../store/user-store/user.actions";
 })
 export class TimelineAboutComponent implements OnInit {
   user$: Observable<any> = this.store$.pipe(select(userStore.getSelectedUser));
+  userLogged$: Observable<any> = this.store$.pipe(select(userStore.getLoginUser));
   info: any;
 
   constructor(private store$: Store) { }
 
   ngOnInit(): void {
-    console.log("render about")
     this.user$.subscribe(val => {
-      console.log("from store", val)
       this.info = val
+    })
+    this.userLogged$.subscribe((val) => {
+      console.log("userLogged$", val)
     })
     // this.store$.dispatch(loadUserRequestAction());
 

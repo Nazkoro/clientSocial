@@ -1,3 +1,4 @@
 <div class="reaction" >
-  <button class="btn text-green" (click)="likePost()"><i class="icon ion-thumbsup"></i>  {{post?.likes?.count || 0}}</button>
+<!--  <button class="btn text-green" (click)="likePost()"><i class="icon ion-thumbsup"></i>  {{post?.likes?.count || 0}}</button>-->
+  <button class="btn text-green" (click)="likePost()"><i class="icon ion-thumbsup"></i>  {{post?.likes?.length || 0}}</button>
 </div>

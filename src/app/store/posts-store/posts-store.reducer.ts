@@ -17,10 +17,11 @@ export interface Post {
   username: string;
   desc: string;
   img: string;
-  likes: {
-    isLiked: boolean,
-    count: number
-  };
+  likes: [];
+  // likes: {
+  //   isLiked: boolean,
+  //   count: number
+  // };
   coments: [];
 }
 
@@ -65,10 +66,6 @@ export const PostReducer = createReducer(
 
   on(PostLiked, (state, {post}) => {
     console.log("postlIKED", post);
-    // console.log("state.posts", state.posts)
-    // console.log("state.posts[0]._id", state.posts[0]._id)
-    // console.log("post", post)
-    // console.log(state.posts[0]._id === post._id);
     const index = state.posts.findIndex(x=> x._id == post[0]._id)
     const leftArr = state.posts.slice(0, index)
     const rightArr = state.posts.slice(index + 1,  state.posts.length)
@@ -83,7 +80,6 @@ export const PostReducer = createReducer(
     const updpost = leftArr.concat(post).concat(rightArr)
     return {...state, posts : updpost};
   }),
-
 
   on(PostsFailed, (state, {serverError}) => ({
     ...state,
@@ -106,6 +102,4 @@ export const PostReducer = createReducer(
     const updpost = leftArr.concat(rightArr)
     return {...state, posts : updpost};
   }),
-
-
 );

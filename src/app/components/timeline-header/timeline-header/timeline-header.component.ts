@@ -15,7 +15,6 @@ export class TimelineHeaderComponent implements OnInit {
   constructor(private store$: Store) { }
 
   ngOnInit(): void {
-    this.infoAbooutuser$.subscribe(val => console.log(val))
   }
 
 }

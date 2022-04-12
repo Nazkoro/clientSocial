@@ -4,8 +4,10 @@
     <div class="row" >
       <form [formGroup]="myForm" (ngSubmit)="submit()">
         <div class="col-md-7 col-sm-7">
-          <div class="form-group">
-            <img src="http://placehold.it/300x300" alt="" class="profile-photo-md" />
+          <div >
+<!--            <span class="form-group" *ngIf="(user$ | async) as userInfo ">-->
+<!--              <img src='http://localhost:4000/images/{{userInfo.coverPicture}}' alt="" class="profile-photo-sm" />-->
+<!--            </span>-->
             <input
               formControlName="post"
               id="name"

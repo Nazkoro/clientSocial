@@ -84,3 +84,8 @@ export const saveDataUser = createAction(
   '[User] save data user',
   props<{ user: any }>()
 );
+
+export const saveloginUser = createAction(
+  '[User] login user',
+  props<{ user: any }>()
+);

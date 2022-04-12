@@ -22,9 +22,7 @@ export class MypostComponent implements OnInit {
 
   constructor(private http: HttpClient,private baseService: BaseService<any>) { }
   ngOnInit() {
-    this.baseService.getMyPosts().subscribe((data:any) => {
-      this.posts = data
-    });
+  this.getPost()
 
   }
   onFileChange(event) {
@@ -35,14 +33,20 @@ export class MypostComponent implements OnInit {
       });
     }
   }
+  getPost(){
+    this.baseService.getMyPosts().subscribe((data:any) => {
+      // let arr = data.flat()
+      // console.log("only this user post", data)
+      this.posts = data
+    });
+  }
 
   increment( post ){
     this.baseService.updatelike(post).subscribe((data:any) => {
       post.likes = data.likes
     });
   }
-  submit()
-  {
+  submit() {
     this.postObj = {
       desc: this.myForm.value.post,
     }
@@ -54,7 +58,8 @@ export class MypostComponent implements OnInit {
 
       this.baseService.createPost(formData)
         .subscribe((data: any) => {
-            this.posts.push(data)
+            console.log(data)
+            this.posts.push(...data)
             this.postObj = {}
           },
           error => console.log(error)

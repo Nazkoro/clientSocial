@@ -26,6 +26,20 @@ export class BaseService<T> {
       })
     );
   }
+
+  getUserByUsername(username): Observable<[any]> {
+    console.log("username",username)
+    return this.http.get<[any]>(`${environment.url}/api/user/relocated/${username}`).pipe(
+      retryWhen((errors) =>{
+        return concat(
+          errors.pipe(delay(500),
+            take(3)),
+          throwError(new Error('Retry limit exceeded'))
+        )
+      })
+    );
+  }
+
   getUser(): Observable<[any]> {
     return this.http.get<[any]>(`${environment.url}/api/user/account`).pipe(
       retryWhen((errors) =>{

@@ -6,6 +6,9 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import {select, Store} from "@ngrx/store";
 import * as postsStore from '../../../store/posts-store/posts-store.selectors';
 import {createPosts, getPosts, putLikePost} from "../../../store/posts-store/posts-store.actions";
+import * as userStore from "../../../store/user-store/user.selectors";
+import {login} from "../../../store/admin-auth-store/store/admin-auth.actions";
+import {getLoginUser} from "../../../store/user-store/user.selectors";
 
 @Component({
   selector: 'app-posts',
@@ -26,6 +29,7 @@ export class PostsComponent implements OnInit {
   loading$: Observable<boolean> = this.store$.pipe(select(postsStore.getLoading));
   loaded$: Observable<boolean> = this.store$.pipe(select(postsStore.getLoaded));
   posts$: Observable<any> = this.store$.pipe(select(postsStore.getPosts));
+  user$: Observable<any> = this.store$.pipe(select(userStore.getLoginUser));
   serverError$: Observable<string> = this.store$.pipe(select(postsStore.getServerError));
 
   serverError = '';
@@ -37,14 +41,12 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.store$.dispatch(getPosts());
   }
-
   // private getPosts(): void {
   //   this.subscription.add(
   //     this.store$.pipe(select(postsStore.getPosts))
   //       .subscribe(posts => this.posts = posts)
   //   );
   // }
-
   onFileChange(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -67,11 +69,6 @@ export class PostsComponent implements OnInit {
     }
     this.myForm.reset()
   }
-  // ngOnDestroy(): void {
-  //   this.subscription.unsubscribe()
-  //
-  // }
-
 }
 
 

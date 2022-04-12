@@ -26,7 +26,6 @@ export class PostsStoreEffects {
       switchMap(action => this.baseService.getPosts()
         .pipe(
         map(data => {
-          console.log(data)
           return PostsSuccess({data})
         }),
         catchError(
@@ -77,7 +76,6 @@ export class PostsStoreEffects {
       switchMap(({objComment}) => this.baseService.createComment(objComment)
         .pipe(
           map((post) => {
-              console.log("mmmmmmAp",post)
               return addedComentInPost({post})
             }
           ),

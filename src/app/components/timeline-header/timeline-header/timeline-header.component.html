@@ -5,9 +5,18 @@
     <div class="row">
       <div class="col-md-3">
         <div class="profile-info" *ngIf="(infoAbooutuser$ | async) as infoUsers">
-          <img src="http://localhost:4000/images/{{infoUsers.coverPicture}}" alt="" class="img-responsive profile-photo" />
+          <span *ngIf="infoUsers?.coverPicture != ''">
+            <img src="http://localhost:4000/images/{{infoUsers.coverPicture}}" alt="" class="img-responsive profile-photo" />
+          </span>
+          <span *ngIf="infoUsers?.coverPicture == ''">
+            <img src="https://www.blexar.com/avatar.png" alt="" class="img-responsive profile-photo" />
+          </span>
+
           <h3>{{infoUsers.firstName }} {{infoUsers.lastName }}</h3>
           <p class="text-muted">{{infoUsers.position }}</p>
+        </div>
+        <div class="profile-info" *ngIf="!(infoAbooutuser$ | async) as infoUsers">
+          <img src="https://www.blexar.com/avatar.png" alt="" class="img-responsive profile-photo" />
 
         </div>
 
@@ -16,7 +25,6 @@
         <ul class="list-inline profile-menu">
           <li><a routerLink="/timeline" >Timeline</a></li>
           <li><a routerLink="/timeline-about">About</a></li>
-          <li><a routerLink="/timeline-album">Album</a></li>
           <li><a routerLink="/timeline-friends" >Friends</a></li>
         </ul>
 
@@ -35,10 +43,8 @@
       <ul class="list-inline">
         <li><a routerLink="/timeline" >Timeline</a></li>
         <li><a routerLink="/timeline-about">About</a></li>
-        <li><a routerLink="/timeline-album">Album</a></li>
         <li><a routerLink="/timeline-friends" class="active">Friends</a></li>
       </ul>
-      <button class="btn-primary">Add Friend</button>
     </div>
   </div><!--Timeline Menu for Small Screens End-->
 

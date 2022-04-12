@@ -23,15 +23,14 @@ export class LikeComponent implements OnInit {
 
     let likeAndPostId = {
       ...this.post,
-      likes : {
-        ...this.post.likes,
-        isLiked: !this.post.likes.isLiked,
-      },
+      // likes : {
+      //   ...this.post.likes,
+      //   isLiked: !this.post.likes.isLiked,
+      // },
     }
     this.updateLike.emit(likeAndPostId);
 
   }
   ngOnDestroy(){
-    console.log("DROP POST FROM TIMELINE")
   }
 }
